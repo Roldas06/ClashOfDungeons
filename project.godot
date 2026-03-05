@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="ClashOfDungeons"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/name="Game"
+run/main_scene="uid://dhh78k34kbkmc"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="ClashOfDungeons"
+project/assembly_name="Game"
 
 [physics]
 
@@ -24,6 +25,5 @@ project/assembly_name="ClashOfDungeons"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
