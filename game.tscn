@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bo4opnevbgyhh" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://dpjg1285hqvqj" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bypwj1xb3dm4t" path="res://Scenes/kill_zone.tscn" id="3_u44n3"]
+[ext_resource type="PackedScene" uid="uid://c0vjreeki0pdv" path="res://Scenes/hearts_container.tscn" id="4_sb48q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -3436,3 +3437,7 @@ position = Vector2(-82, 74)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=1655050398]
 position = Vector2(-106, -8)
 shape = SubResource("WorldBoundaryShape2D_sb48q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=790482934]
+
+[node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
