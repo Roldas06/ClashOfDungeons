@@ -1,0 +1,20 @@
+<<<<<<< Updated upstream
+[gd_scene format=3 uid="uid://dbwrqct7obvkq"]
+
+[ext_resource type="Script" uid="uid://bj1x8bk5ob50h" path="res://area_2d.gd" id="1_38bl4"]
+=======
+[gd_scene format=3 uid="uid://cef5bd1xt32kb"]
+
+[ext_resource type="Script" path="res://area_2d.gd" id="1_38bl4"]
+>>>>>>> Stashed changes
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_focdf"]
+radius = 13.038404
+
+[node name="Area2D" type="Area2D" unique_id=1280448524]
+script = ExtResource("1_38bl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336261767]
+shape = SubResource("CircleShape2D_focdf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

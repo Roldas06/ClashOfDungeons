@@ -1,0 +1,17 @@
+<<<<<<< Updated upstream
+[gd_scene format=3 uid="uid://ov6e161byi4s"]
+
+[ext_resource type="Texture2D" uid="uid://b5nur8bnimoba" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_oabld"]
+=======
+[gd_scene format=3 uid="uid://bpwu7qa3uqcl8"]
+
+[ext_resource type="Texture2D" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_oabld"]
+>>>>>>> Stashed changes
+
+[node name="Sprite2D" type="Sprite2D" unique_id=476101070]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1370204184]
+z_index = -4096
+position = Vector2(579, 325.5)
+scale = Vector2(2.4166667, 2.3639705)
+texture = ExtResource("1_oabld")
