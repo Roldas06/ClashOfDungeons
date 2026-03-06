@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://bhn4kgs6ixv68"]
 
 [ext_resource type="PackedScene" uid="uid://bo4opnevbgyhh" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bmyirihn0s6s8" path="res://game.gd" id="1_t88pq"]
 [ext_resource type="Texture2D" uid="uid://dpjg1285hqvqj" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bypwj1xb3dm4t" path="res://Scenes/kill_zone.tscn" id="3_u44n3"]
 [ext_resource type="PackedScene" uid="uid://c0vjreeki0pdv" path="res://Scenes/hearts_container.tscn" id="4_sb48q"]
+[ext_resource type="Script" uid="uid://mldt63bh7pva" path="res://Scenes/hearts_container.gd" id="6_r0x5m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -3412,6 +3414,7 @@ sources/4 = SubResource("TileSetAtlasSource_joorw")
 distance = -1.0
 
 [node name="Game" type="Node2D" unique_id=1327227580]
+script = ExtResource("1_t88pq")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=2106618007]
 position = Vector2(0, 4)
@@ -3441,3 +3444,4 @@ shape = SubResource("WorldBoundaryShape2D_sb48q")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=790482934]
 
 [node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
+script = ExtResource("6_r0x5m")
