@@ -1,38 +1,6 @@
 [gd_scene format=3 uid="uid://c0vjreeki0pdv"]
 
-[ext_resource type="PackedScene" uid="uid://jgm73ysx2kfu" path="res://Scenes/heart_gui.tscn" id="1_rmnpa"]
-
 [node name="heartsContainer" type="HBoxContainer" unique_id=896393306]
 offset_right = 206.0
 offset_bottom = 120.0
 scale = Vector2(2.5, 2.5)
-
-[node name="heartGui" parent="." unique_id=1868344263 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui2" parent="." unique_id=899899855 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui3" parent="." unique_id=1479120729 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui4" parent="." unique_id=756204843 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui5" parent="." unique_id=1040193867 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui6" parent="." unique_id=351333268 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui7" parent="." unique_id=1928280769 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui8" parent="." unique_id=1995270792 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui9" parent="." unique_id=1755614128 instance=ExtResource("1_rmnpa")]
-layout_mode = 2
-
-[node name="heartGui10" parent="." unique_id=1588730546 instance=ExtResource("1_rmnpa")]
-layout_mode = 2

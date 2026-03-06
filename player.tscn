@@ -9,7 +9,8 @@ script/source = "extends CharacterBody2D
 const playerSpeed = 100.0
 const playerJumpVelocity = -200.0
 var maxHealthPoints = 10
-var healthPoints: int = maxHealthPoints
+var currentHealthPoints: int = maxHealthPoints
+signal healthChanged
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -18,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
 		velocity.y = playerJumpVelocity
-		
+		TakeDamage(1)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
@@ -28,12 +29,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, playerSpeed)
 
 	move_and_slide()
-func _take_damage(damageTaken):
-	healthPoints = healthPoints - damageTaken
-	print(healthPoints)
-	if(healthPoints <= 0):
-		_death()
-func _death():
+func TakeDamage(damageTaken):
+	currentHealthPoints = currentHealthPoints - damageTaken
+	healthChanged.emit(currentHealthPoints)
+	if(currentHealthPoints <= 0):
+		Death()
+func Death():
 	print(\"GAME OVER!\")
 	get_tree().reload_current_scene()
 "
