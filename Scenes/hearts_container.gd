@@ -9,16 +9,30 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-func SetMaxHearts(max: int):
-	for i in range(max):
+	
+#Užpildo žaidėjo širdutes pagal žaidėjo gyvybės taškų skaičių. 
+#1 gyvybės taškas - pusė širdutės
+func SetMaxHearts(maxHealthPoints: int):
+	var heartCount = ceil(maxHealthPoints / 4.0)
+	for i in range(heartCount):
 		var heart = HeartGuiClass.instantiate()
 		add_child(heart)
+		
+
+#Atnaujina širdučių kiekį pagal dabartinį gyvybių skaičių
+
 func UpdateHearts(currentHealth: int):
 	var hearts = get_children()
 	
-	for i in range(currentHealth):
-		hearts[i].Update(true)
+	for i in range(hearts.size()):
+		var heartStartHealth = i * 4 #kiekviena širdutė turi 4gyvybės taškus
 		
-	for i in range(currentHealth, hearts.size()):
-		hearts[i].Update(false)	
-	
+		if currentHealth >= heartStartHealth + 4:
+			# Pilna širdutė
+			hearts[i].Update(0)
+		elif currentHealth >= heartStartHealth + 2:
+			# Pusė širdutės
+			hearts[i].Update(2)
+		else:
+			# Tuščia širdutė
+			hearts[i].Update(4)

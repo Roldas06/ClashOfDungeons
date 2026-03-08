@@ -1,15 +1,15 @@
 extends Panel
 
-@onready var sprite = $Sprite2D# Called when the node enters the scene tree for the first time.
+@onready var sprite = $Sprite2D
+
 
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
-func Update(wholeHeart: bool):
-	if wholeHeart: sprite.frame = 0
-	else: sprite.frame = 4
-		
+
+#Širdučių atnaujinimo funkcija 
+#HeartState - Širdutės stadija (pilna/tuščia/pusė)
+#Pilna - 0
+#Pusė - 2
+#Tuščia - 4
+func Update(state: int):
+	sprite.frame = state 
