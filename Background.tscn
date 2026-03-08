@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ov6e161byi4s"]
+
+[ext_resource type="Texture2D" uid="uid://iodpjyyv1klq" path="res://assets/oak_woods_v1.0/background/background_layer_1.png" id="1_l3thc"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=945344100]
+
+[node name="BackgroundLayer1" type="Sprite2D" parent="." unique_id=101718317]
+position = Vector2(320, 453.75)
+scale = Vector2(2.0687501, 1.9083333)
+texture = ExtResource("1_l3thc")
