@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bhn4kgs6ixv68"]
+[gd_scene format=4 uid="uid://bhn4kgs6ixv68"]
 
 [ext_resource type="PackedScene" uid="uid://bo4opnevbgyhh" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bmyirihn0s6s8" path="res://game.gd" id="1_t88pq"]
@@ -462,10 +462,12 @@ shape = SubResource("WorldBoundaryShape2D_sb48q")
 [node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
 script = ExtResource("6_r0x5m")
 
-[node name="TileMap" type="TileMap" parent="." unique_id=1356268925]
+[node name="TileMap" type="Node2D" parent="." unique_id=881427258]
+
+[node name="Layer0" type="TileMapLayer" parent="TileMap" unique_id=1304164914]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD7//7/AAABAAAAAAD8//7/AAACAAAAAAD9//7/AAADAAAAAAD+//7/AAAEAAAAAAD///7/AAABAAAAAAAAAP7/AAACAAAAAAABAP7/AAADAAAAAAACAP7/AAAEAAAAAAADAP7/AAABAAAAAAAEAP7/AAACAAAAAAAFAP7/AAADAAAAAAAGAP7/AAAEAAAAAAAHAP7/AAAFAAAAAAD6//7/AAAAAAAAAAD7////AAABAAUAAAD8////AAACAAUAAAD9////AAADAAUAAAD+////AAAEAAUAAAD/////AAABAAUAAAAAAP//AAACAAUAAAABAP//AAADAAUAAAACAP//AAAEAAUAAAADAP//AAABAAUAAAAEAP//AAACAAUAAAAFAP//AAADAAUAAAAGAP//AAAEAAUAAAAHAP//AAAFAAUAAAD6////AAAAAAUAAAA=")
 tile_set = SubResource("TileSet_j5wjh")
-format = 2
-layer_0/tile_data = PackedInt32Array(-65541, 65536, 0, -65540, 131072, 0, -65539, 196608, 0, -65538, 262144, 0, -65537, 65536, 0, -131072, 131072, 0, -131071, 196608, 0, -131070, 262144, 0, -131069, 65536, 0, -131068, 131072, 0, -131067, 196608, 0, -131066, 262144, 0, -131065, 327680, 0, -65542, 0, 0, -5, 65536, 5, -4, 131072, 5, -3, 196608, 5, -2, 262144, 5, -1, 65536, 5, -65536, 131072, 5, -65535, 196608, 5, -65534, 262144, 5, -65533, 65536, 5, -65532, 131072, 5, -65531, 196608, 5, -65530, 262144, 5, -65529, 327680, 5, -6, 0, 5)
 
 [node name="Sprite2D" parent="." unique_id=945344100 instance=ExtResource("7_eow3j")]
 z_index = -4096
