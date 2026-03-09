@@ -105,8 +105,12 @@ frame_progress = 0.75262207
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_1jxqw")
 
-[node name="Crosshair" type="Sprite2D" parent="." unique_id=25711850]
-position = Vector2(11, -3.999999)
+[node name="HandAnchor" type="Node2D" parent="." unique_id=737434412]
+position = Vector2(0, -6.000001)
 rotation = 1.5707964
 scale = Vector2(0.8890144, 0.93112403)
+
+[node name="Crosshair" type="Sprite2D" parent="HandAnchor" unique_id=25711850]
+position = Vector2(5.810484e-07, -10.739708)
+scale = Vector2(1.0000001, 1)
 texture = SubResource("AtlasTexture_2hs0m")
