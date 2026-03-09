@@ -15,6 +15,11 @@ run/main_scene="uid://bhn4kgs6ixv68"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=880
+
 [dotnet]
 
 project/assembly_name="Game"
