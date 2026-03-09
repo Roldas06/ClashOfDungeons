@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bo4opnevbgyhh"]
 
 [ext_resource type="Texture2D" uid="uid://c2ae1swr40c57" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bqdly634ef7ii" path="res://Scripts/hand_anchor.gd" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cuvkpyv5oe0gp" path="res://assets/oak_woods_v1.0/8x8 Weapons-Sword.png" id="2_onrkg"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
@@ -107,10 +108,11 @@ shape = SubResource("CircleShape2D_1jxqw")
 
 [node name="HandAnchor" type="Node2D" parent="." unique_id=737434412]
 position = Vector2(0, -6.000001)
-rotation = 1.5707964
 scale = Vector2(0.8890144, 0.93112403)
+script = ExtResource("2_i3pqv")
 
 [node name="Crosshair" type="Sprite2D" parent="HandAnchor" unique_id=25711850]
-position = Vector2(5.810484e-07, -10.739708)
-scale = Vector2(1.0000001, 1)
+position = Vector2(13.498094, 1.0739717)
+rotation = 1.5707964
+scale = Vector2(0.86064214, 1.3129108)
 texture = SubResource("AtlasTexture_2hs0m")
