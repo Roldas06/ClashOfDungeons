@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c0vjreeki0pdv" path="res://Scenes/hearts_container.tscn" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://mldt63bh7pva" path="res://Scenes/hearts_container.gd" id="6_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://ov6e161byi4s" path="res://Background.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bdxajsfr2nqpd" path="res://SpikeArea.tscn" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://c3msijbmssct" path="res://assets/oak_woods_v1.0/decorations/fence_1.png" id="8_vef74"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sb48q"]
 distance = -1.0
@@ -204,6 +206,9 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_eow3j")
 sources/3 = SubResource("TileSetAtlasSource_j5wjh")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
+size = Vector2(217.86008, 10.684472)
+
 [node name="Game" type="Node2D" unique_id=1327227580]
 script = ExtResource("1_t88pq")
 
@@ -233,7 +238,6 @@ shape = SubResource("WorldBoundaryShape2D_sb48q")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=790482934]
 
 [node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
-anchors_preset = -1
 alignment = 1
 script = ExtResource("6_r0x5m")
 
@@ -247,3 +251,20 @@ position = Vector2(-306, -526)
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD9////AAACAAAAAAD+////AAACAAAAAAD/////AAABAAAAAAAAAP//AAACAAAAAAABAP//AAABAAAAAAACAP//AAACAAAAAAADAP//AAABAAAAAAAEAP//AAACAAAAAAAFAP//AAABAAAAAAAGAP//AAADAAAAAAD+/wAAAAABAAMAAAD//wAAAAACAAMAAAAAAAAAAAABAAMAAAABAAAAAAACAAMAAAACAAAAAAABAAMAAAADAAAAAAACAAMAAAAEAAAAAAABAAMAAAAFAAAAAAACAAMAAAAGAAAAAAADAAMAAAD9/wAAAAACAAMAAAD7//7/AAABAAAAAAD8//7/AAACAAAAAAD9//7/AAADAAAAAAD8////AAACAAAAAAD7////AAABAAEAAAD6////AAABAAEAAAD8/wAAAAACAAMAAAD7/wAAAAACAAMAAAD6/wAAAAACAAMAAAD6//7/AAABAAAAAAACAPv/AwAAAAAAAAACAPz/AwAAAAEAAAACAP3/AwAAAAIAAAACAP7/AwAAAAMAAAADAPv/AwABAAAAAAADAPz/AwABAAEAAAADAP3/AwABAAIAAAADAP7/AwABAAMAAAAEAPv/AwACAAAAAAAEAPz/AwACAAEAAAAEAP3/AwACAAIAAAAEAP7/AwACAAMAAAAFAPv/AwADAAAAAAAFAPz/AwADAAEAAAAFAP3/AwADAAIAAAAFAP7/AwADAAMAAAA=")
 tile_set = SubResource("TileSet_j5wjh")
+
+[node name="Fence1" type="Sprite2D" parent="." unique_id=1002276750]
+physics_interpolation_mode = 1
+position = Vector2(-103, -57)
+texture = ExtResource("8_vef74")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fence1" unique_id=1884129334]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fence1/StaticBody2D" unique_id=67614862]
+position = Vector2(0.6790085, 1.6020088)
+rotation = -3.1415925
+scale = Vector2(0.3, -1.423)
+shape = SubResource("RectangleShape2D_j5wjh")
+
+[node name="Area2D" parent="Fence1/StaticBody2D/CollisionShape2D" unique_id=377709962 instance=ExtResource("8_j5wjh")]
+rotation = 0.0
+scale = Vector2(65, 2.2)

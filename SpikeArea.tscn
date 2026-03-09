@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bdxajsfr2nqpd"]
+
+[ext_resource type="Script" uid="uid://ckyiyps0cp6gb" path="res://Scripts/SpikeArea.gd" id="1_pguy7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pguy7"]
+size = Vector2(7.373265, 11.715576)
+
+[node name="Area2D" type="Area2D" unique_id=377709962]
+rotation = 1.8613714
+scale = Vector2(1.36567, 1.36567)
+script = ExtResource("1_pguy7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195352618]
+position = Vector2(-3.9201895e-09, 1.1722903e-09)
+scale = Vector2(0.4659567, 0.4659567)
+shape = SubResource("RectangleShape2D_pguy7")
+
+[connection signal="body_entered" from="." to="." method="_on_Spike_body_entered"]

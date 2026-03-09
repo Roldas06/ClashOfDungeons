@@ -42,9 +42,15 @@ func TakeDamage(damageTaken):
 	healthChanged.emit(currentHealthPoints)
 	if(currentHealthPoints <= 0):
 		Death()
+		
+func ApplyKnockback(force: Vector2) -> void:
+	velocity += force
+	
+		
 func Death():
 	print(\"GAME OVER!\")
 	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+	
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
