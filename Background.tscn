@@ -6,5 +6,5 @@
 
 [node name="BackgroundLayer1" type="Sprite2D" parent="." unique_id=101718317]
 position = Vector2(320, 453.75)
-scale = Vector2(2.0687501, 1.9083333)
+scale = Vector2(2.6231213, 2.5660357)
 texture = ExtResource("1_l3thc")
