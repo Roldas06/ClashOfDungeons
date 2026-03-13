@@ -723,5 +723,5 @@ libraries/ = SubResource("AnimationLibrary_hb5m1")
 autoplay = &"Move"
 
 [node name="Lava" parent="." unique_id=200524643 groups=["player"] instance=ExtResource("9_hb5m1")]
-position = Vector2(-220.99998, -6)
-scale = Vector2(6.669412, 2.44136)
+position = Vector2(-221, -6)
+scale = Vector2(7.752812, 3.0952275)

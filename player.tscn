@@ -6,11 +6,9 @@
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
-
 @export var speed = 10.0
 @export var jump_power = 10.0
 @export var gravity = 900.0
-
 var is_in_lava = false
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
@@ -20,73 +18,82 @@ var maxHealthPoints = 40
 var currentHealthPoints: int = maxHealthPoints
 signal healthChanged
 
-# --- NEW LAVA DAMAGE VARIABLES ---
-var lava_damage_interval = 1.0 # How many seconds between hits
-var lava_damage_timer = 0.0    # Tracks time passed
-var lava_damage_amount = 5     # How much health to lose
+# --- LAVA DAMAGE VARIABLES ---
+var lava_damage_interval = 0.5
+var lava_damage_timer = 0.0
+var lava_damage_amount = 4
+
+# --- LAVA SWIMMING VARIABLES ---
+var lava_swim_power = -160.0
+var lava_horizontal_drag = 0.85
 
 func _physics_process(delta: float) -> void:
-	# 1. APPLY GRAVITY OR SINKING
+	# 1. APPLY GRAVITY / LAVA PHYSICS
 	if not is_on_floor():
 		if is_in_lava:
-			velocity.y = 40.0 # Slow sink speed
-			
-			# --- DAMAGE OVER TIME LOGIC ---
-			lava_damage_timer += delta
-			if lava_damage_timer >= lava_damage_interval:
-				TakeDamage(lava_damage_amount)
-				lava_damage_timer = 0.0 # Reset timer for next hit
+			# Weak lava gravity — sinks slowly but steadily
+			velocity.y += 80.0 * delta * 10
+			velocity.y = clamp(velocity.y, -400.0, 80.0)
+
+			_handle_lava_damage(delta)
 		else:
 			velocity.y += gravity * delta
-			lava_damage_timer = 0.0 # Reset timer when out of lava
+			lava_damage_timer = 0.0
 	else:
 		jump_count = 0
-		# Also check damage while standing in shallow lava
 		if is_in_lava:
-			lava_damage_timer += delta
-			if lava_damage_timer >= lava_damage_interval:
-				TakeDamage(lava_damage_amount)
-				lava_damage_timer = 0.0
-
-	# 2. HANDLE JUMP
-	if Input.is_action_just_pressed(\"ui_accept\") and jump_count < 2:
-		jump_count += 1
-		var current_jump_power = jump_power * jump_multiplier
-		if is_in_lava:
-			velocity.y = current_jump_power * 0.4
+			_handle_lava_damage(delta)
 		else:
-			velocity.y = current_jump_power
+			lava_damage_timer = 0.0
+
+	# 2. HANDLE JUMP / SWIM
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		if is_in_lava:
+			# Swim stroke upward — no jump count limit in lava
+			velocity.y = lava_swim_power
+		elif jump_count < 2:
+			jump_count += 1
+			velocity.y = jump_power * jump_multiplier
 
 	# 3. HANDLE MOVEMENT
 	direction = Input.get_axis(\"move_left\", \"move_right\")
 	var final_speed = speed * speed_multiplier
+
 	if is_in_lava:
-		final_speed = speed * 5.0 
-	
-	if direction:
-		velocity.x = direction * final_speed
+		final_speed = speed * 5.0
+		if direction:
+			velocity.x = direction * final_speed
+		else:
+			# Viscous drag in lava
+			velocity.x *= lava_horizontal_drag
 	else:
-		velocity.x = move_toward(velocity.x, 0, final_speed)
+		if direction:
+			velocity.x = direction * final_speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, final_speed)
 
 	move_and_slide()
 
-# --- HELPER FUNCTIONS ---
+# --- LAVA DAMAGE ---
+func _handle_lava_damage(delta: float) -> void:
+	lava_damage_timer += delta
+	if lava_damage_timer >= lava_damage_interval:
+		TakeDamage(lava_damage_amount)
+		lava_damage_timer = 0.0
 
+# --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
-	currentHealthPoints = currentHealthPoints - damageTaken
+	currentHealthPoints -= damageTaken
 	healthChanged.emit(currentHealthPoints)
-	
-	# Visual feedback so you know you're being hit
-	modulate = Color(10, 10, 10) # Flash bright
+	modulate = Color(10, 10, 10)
 	var tween = create_tween()
 	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.1)
-	
-	if(currentHealthPoints <= 0):
+	if currentHealthPoints <= 0:
 		Death()
-		
+
 func ApplyKnockback(force: Vector2) -> void:
 	velocity += force
-		
+
 func Death():
 	print(\"GAME OVER!\")
 	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
