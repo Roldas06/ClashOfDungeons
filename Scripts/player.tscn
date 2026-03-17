@@ -9,7 +9,6 @@
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
-
 @export var speed = 300.0
 @export var jump_power = 30.0
 @export var gravity = 900.0
@@ -21,26 +20,26 @@ var jump_count = 0
 var maxHealthPoints = 40
 var currentHealthPoints: int = maxHealthPoints
 signal healthChanged
-
-
+# --- DASH VARIABLES ---
+var can_dash := true
+var dash_speed := 600.0
+var dash_duration := 0.15
+var dash_cooldown := 0.8
+var is_dashing := false
 # --- LAVA DAMAGE VARIABLES ---
 var lava_damage_interval = 0.5
 var lava_damage_timer = 0.0
 var lava_damage_amount = 4
 var damage_number_scene = preload(\"res://DamageNumber.tscn\")
-
 # --- LAVA SWIMMING VARIABLES ---
 var lava_swim_power = -160.0
 var lava_horizontal_drag = 0.85
-
 func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY / LAVA PHYSICS
 	if not is_on_floor():
 		if is_in_lava:
-			# Weak lava gravity — sinks slowly but steadily
 			velocity.y += 80.0 * delta * 10
 			velocity.y = clamp(velocity.y, -400.0, 80.0)
-
 			_handle_lava_damage(delta)
 		else:
 			velocity.y += gravity * delta
@@ -51,34 +50,50 @@ func _physics_process(delta: float) -> void:
 			_handle_lava_damage(delta)
 		else:
 			lava_damage_timer = 0.0
-
 	# 2. HANDLE JUMP / SWIM
 	if Input.is_action_just_pressed(\"ui_accept\"):
 		if is_in_lava:
-			# Swim stroke upward — no jump count limit in lava
 			velocity.y = lava_swim_power
 		elif jump_count < 2:
 			jump_count += 1
 			velocity.y = jump_power * jump_multiplier
-
-	# 3. HANDLE MOVEMENT
+	# 3. DASH
+	if Input.is_action_just_pressed(\"dash\") and can_dash and not is_dashing:
+		_start_dash()
+	# 4. HANDLE MOVEMENT
 	direction = Input.get_axis(\"move_left\", \"move_right\")
 	var final_speed = speed * speed_multiplier
-
-	if is_in_lava:
-		final_speed = speed * 5.0
-		if direction:
-			velocity.x = direction * final_speed
+	if not is_dashing:
+		if is_in_lava:
+			final_speed = speed * 5.0
+			if direction:
+				velocity.x = direction * final_speed
+			else:
+				velocity.x *= lava_horizontal_drag
 		else:
-			# Viscous drag in lava
-			velocity.x *= lava_horizontal_drag
-	else:
-		if direction:
-			velocity.x = direction * final_speed
-		else:
-			velocity.x = move_toward(velocity.x, 0, final_speed)
-	
+			if direction:
+				velocity.x = direction * final_speed
+			else:
+				velocity.x = move_toward(velocity.x, 0, final_speed)
 	move_and_slide()
+# --- DASH FUNCTIONS ---
+func _start_dash():
+	if is_dashing or not can_dash:  # double guard
+		return
+	is_dashing = true
+	can_dash = false
+	var dash_direction = direction if direction != 0 else (1.0 if not $PlayerAnimator/Sprite2D.flip_h else -1.0)
+	velocity.x = dash_direction * dash_speed
+	velocity.y = 0.0
+
+	set_collision_layer_value(1, false)
+	await get_tree().create_timer(dash_duration).timeout
+	is_dashing = false
+	set_collision_layer_value(1, true)
+
+	await get_tree().create_timer(dash_cooldown).timeout
+	can_dash = true
+
 
 # --- LAVA DAMAGE ---
 func _handle_lava_damage(delta: float) -> void:
@@ -86,7 +101,6 @@ func _handle_lava_damage(delta: float) -> void:
 	if lava_damage_timer >= lava_damage_interval:
 		TakeDamage(lava_damage_amount)
 		lava_damage_timer = 0.0
-
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
 	currentHealthPoints -= damageTaken
@@ -107,10 +121,8 @@ func TakeDamage(damageTaken):
 	
 	if currentHealthPoints <= 0:
 		Death()
-
 func ApplyKnockback(force: Vector2) -> void:
 	velocity += force
-
 func Death():
 	print(\"GAME OVER!\")
 	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
