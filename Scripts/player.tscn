@@ -10,8 +10,8 @@
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
 
-@export var speed = 10.0
-@export var jump_power = 10.0
+@export var speed = 300.0
+@export var jump_power = 30.0
 @export var gravity = 900.0
 var is_in_lava = false
 var speed_multiplier = 30.0
