@@ -589,7 +589,7 @@ script = ExtResource("1_t88pq")
 z_index = 1
 position = Vector2(18, -23)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(1, -9)
 zoom = Vector2(4, 4)
 limit_left = -9999956
@@ -648,14 +648,14 @@ tile_map_data = PackedByteArray("AAD1////AQAEAA4AAAD1/wAAAQAEAA4AAAD0////AQAEAA4
 tile_set = SubResource("TileSet_e8heu")
 
 [node name="Teleporter" parent="." unique_id=299213795 node_paths=PackedStringArray("target") instance=ExtResource("8_j5wjh")]
-position = Vector2(611, 88)
+position = Vector2(611, 100)
 scale = Vector2(8.4, 4.1200013)
 target = NodePath("../SpotToTeleport")
 
 [node name="SpotToTeleport" type="Marker2D" parent="." unique_id=405828732]
 position = Vector2(312, -190)
 
-[node name="TreesRocks" type="Sprite2D" parent="." unique_id=509529573]
+[node name="TreesRocks" type="Node" parent="." unique_id=1892327516]
 
 [node name="Fence1" type="Sprite2D" parent="TreesRocks" unique_id=1787327702]
 position = Vector2(-107, -56)
@@ -667,7 +667,7 @@ texture = ExtResource("9_e8heu")
 
 [node name="Lamp" type="Sprite2D" parent="TreesRocks" unique_id=1635721728]
 position = Vector2(-7, -52)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(1.084542, -1)
 texture = ExtResource("10_rvswv")
 

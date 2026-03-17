@@ -22,10 +22,12 @@ var maxHealthPoints = 40
 var currentHealthPoints: int = maxHealthPoints
 signal healthChanged
 
+
 # --- LAVA DAMAGE VARIABLES ---
 var lava_damage_interval = 0.5
 var lava_damage_timer = 0.0
 var lava_damage_amount = 4
+var damage_number_scene = preload(\"res://DamageNumber.tscn\")
 
 # --- LAVA SWIMMING VARIABLES ---
 var lava_swim_power = -160.0
@@ -75,7 +77,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * final_speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, final_speed)
-
+	
 	move_and_slide()
 
 # --- LAVA DAMAGE ---
@@ -89,9 +91,20 @@ func _handle_lava_damage(delta: float) -> void:
 func TakeDamage(damageTaken):
 	currentHealthPoints -= damageTaken
 	healthChanged.emit(currentHealthPoints)
-	modulate = Color(10, 10, 10)
+	modulate = Color(1, 0.2, 0.2)
 	var tween = create_tween()
-	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.1)
+	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.15)
+	
+	# Spawn damage number
+	var dmg_num = damage_number_scene.instantiate()
+	get_parent().add_child(dmg_num)
+	dmg_num.spawn(damageTaken, global_position + Vector2(0, -40))
+	
+	# Screen shake
+	var camera = get_tree().get_first_node_in_group(\"camera\")
+	if camera:
+		camera.shake(6.0)
+	
 	if currentHealthPoints <= 0:
 		Death()
 
