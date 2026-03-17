@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bhn4kgs6ixv68"]
 
-[ext_resource type="PackedScene" uid="uid://bo4opnevbgyhh" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://bo4opnevbgyhh" path="res://Scripts/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bmyirihn0s6s8" path="res://game.gd" id="1_t88pq"]
 [ext_resource type="Script" uid="uid://b7mwihabnwsth" path="res://Scripts/camera_2d.gd" id="3_eow3j"]
 [ext_resource type="PackedScene" uid="uid://bypwj1xb3dm4t" path="res://Scenes/kill_zone.tscn" id="3_u44n3"]
