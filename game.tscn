@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://2opdq83h1334" path="res://assets/oak_woods_v1.0/decorations/rock_3.png" id="15_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="16_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://bijpryjja6a6b" path="res://assets/oak_woods_v1.0/decorations/rock_2.png" id="17_vaj68"]
+[ext_resource type="AudioStream" uid="uid://bdy7hlf8vnkl4" path="res://Kevin MacLeod - 8bit Dungeon Boss  NO COPYRIGHT 8-bit Music.mp3" id="22_x5p1p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sb48q"]
 distance = -1.0
@@ -725,3 +726,7 @@ autoplay = &"Move"
 [node name="Lava" parent="." unique_id=200524643 groups=["player"] instance=ExtResource("9_hb5m1")]
 position = Vector2(-221, -6)
 scale = Vector2(7.752812, 3.0952275)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=928372776]
+stream = ExtResource("22_x5p1p")
+autoplay = true
