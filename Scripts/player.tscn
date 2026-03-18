@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cuvkpyv5oe0gp" path="res://assets/oak_woods_v1.0/8x8 Weapons-Sword.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://37p2oww65vay" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Jump.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://cfnjv7dl1w7po" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Run.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://bt5jgvdnv12fg" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Attack 1.png" id="3_e30d2"]
 [ext_resource type="Texture2D" uid="uid://drfsifieua1bf" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Idle.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://c347ee2a3rarl" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Dash.png" id="3_tnia3"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 script/source = "extends CharacterBody2D
@@ -188,6 +190,64 @@ tracks/1/keys = {
 "values": [SubResource("CompressedTexture2D_1jxqw")]
 }
 
+[sub_resource type="Animation" id="Animation_dewun"]
+resource_name = "attack1"
+length = 1.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_e30d2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(198, 60, 26, 20), Rect2(341, 60, 28, 20), Rect2(476, 60, 68, 20), Rect2(623, 60, 58, 20), Rect2(767, 60, 56, 20), Rect2(910, 60, 54, 20), Rect2(1056, 60, 50, 20), Rect2(1207, 60, 41, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_e30d2"]
+resource_name = "dash"
+length = 1.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tnia3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(343, 60, 27, 20), Rect2(486, 60, 28, 20), Rect2(515.735, 60, 28, 20), Rect2(1207, 60, 27, 20), Rect2(1351, 60, 27, 20)]
+}
+
 [sub_resource type="Animation" id="Animation_sweqy"]
 resource_name = "fall"
 length = 0.75
@@ -282,6 +342,8 @@ tracks/1/keys = {
 _data = {
 &"Idle": SubResource("Animation_i3pqv"),
 &"RESET": SubResource("Animation_hqtel"),
+&"attack1": SubResource("Animation_dewun"),
+&"dash": SubResource("Animation_e30d2"),
 &"fall": SubResource("Animation_sweqy"),
 &"jump": SubResource("Animation_2hs0m"),
 &"move": SubResource("Animation_1jxqw")
@@ -312,17 +374,19 @@ autoplay = &"Idle"
 speed_scale = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=623000503]
-position = Vector2(-2, -10)
+position = Vector2(-3, -10)
 scale = Vector2(1.02, 1)
 texture = SubResource("CompressedTexture2D_1jxqw")
 region_enabled = true
 region_rect = Rect2(56, 60, 24, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1867721666]
+visible = false
 position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
 [node name="HandAnchor" type="Node2D" parent="." unique_id=737434412]
+visible = false
 position = Vector2(0, -6.000001)
 scale = Vector2(0.8890144, 0.93112403)
 script = ExtResource("2_i3pqv")

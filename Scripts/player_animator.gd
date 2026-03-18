@@ -10,6 +10,10 @@ func _process(delta):
 	elif player_controller.direction == -1:
 		sprite.flip_h = true
 	
+	if player_controller.is_dashing:
+		animation_player.play("dash")
+		return
+	
 	if abs(player_controller.velocity.x) > 0.0:
 		animation_player.play("move")
 	else:
