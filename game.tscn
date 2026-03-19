@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://2opdq83h1334" path="res://assets/oak_woods_v1.0/decorations/rock_3.png" id="15_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="16_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://bijpryjja6a6b" path="res://assets/oak_woods_v1.0/decorations/rock_2.png" id="17_vaj68"]
+[ext_resource type="PackedScene" uid="uid://bsy2r14hcj28v" path="res://Scenes/Enemy/spider_enemy.tscn" id="21_f1jbl"]
 [ext_resource type="AudioStream" uid="uid://bdy7hlf8vnkl4" path="res://Kevin MacLeod - 8bit Dungeon Boss  NO COPYRIGHT 8-bit Music.mp3" id="22_x5p1p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sb48q"]
@@ -1528,3 +1529,6 @@ scale = Vector2(1.2077242, 1.2150115)
 z_index = -4096
 position = Vector2(706.99994, -578)
 scale = Vector2(1.2131985, 1.2131985)
+
+[node name="SpiderEnemy" parent="." unique_id=457331688 instance=ExtResource("21_f1jbl")]
+position = Vector2(174, -42)
