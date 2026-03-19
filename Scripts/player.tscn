@@ -432,14 +432,12 @@ autoplay = &"Idle"
 speed_scale = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=623000503]
-position = Vector2(-3, -10)
 scale = Vector2(1.02, 1)
 texture = SubResource("CompressedTexture2D_1jxqw")
 region_enabled = true
 region_rect = Rect2(56, 60, 24, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1867721666]
-position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
 [node name="HandAnchor" type="Node2D" parent="." unique_id=737434412]
@@ -455,7 +453,7 @@ scale = Vector2(0.86064214, 1.3129108)
 texture = SubResource("AtlasTexture_2hs0m")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=836114307]
-position = Vector2(19, -9)
+position = Vector2(19, 0)
 monitoring = false
 
 [node name="AttackHitbox" type="CollisionShape2D" parent="AttackArea" unique_id=240828775]
