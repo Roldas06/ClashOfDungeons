@@ -1517,6 +1517,7 @@ scale = Vector2(7.752812, 3.0952275)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=928372776]
 stream = ExtResource("22_x5p1p")
 autoplay = true
+bus = &"Music"
 
 [node name="BackGrounds" type="Node" parent="." unique_id=799645067]
 
