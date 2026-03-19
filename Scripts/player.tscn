@@ -380,6 +380,9 @@ height = 18.0
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
 atlas = ExtResource("2_onrkg")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e30d2"]
+size = Vector2(26, 17)
+
 [node name="Player" type="CharacterBody2D" unique_id=229956183]
 script = SubResource("GDScript_4flbx")
 speed = 5.0
@@ -420,3 +423,11 @@ position = Vector2(13.498095, 1.0739717)
 rotation = 1.5707964
 scale = Vector2(0.86064214, 1.3129108)
 texture = SubResource("AtlasTexture_2hs0m")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=836114307]
+position = Vector2(16, -7)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=240828775]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_e30d2")
