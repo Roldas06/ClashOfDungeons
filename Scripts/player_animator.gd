@@ -14,6 +14,10 @@ func _process(delta):
 		animation_player.play("dash")
 		return
 	
+	if player_controller.is_attacking:
+		animation_player.play("attack1")
+		return
+	
 	if abs(player_controller.velocity.x) > 0.0:
 		animation_player.play("move")
 	else:
@@ -23,4 +27,5 @@ func _process(delta):
 		animation_player.play("jump")
 	elif player_controller.velocity.y > 0.0:
 		animation_player.play("fall")
+	
 	
