@@ -4,7 +4,7 @@ extends Node2D
 
 @export var defaultDirection = Vector2.RIGHT
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var cursorPosition = get_global_mouse_position()
 	var rotationAngle = global_position.angle_to_point(cursorPosition)
 	rotation = rotationAngle

@@ -36,8 +36,7 @@ var damage_number_scene = preload(\"res://DamageNumber.tscn\")
 # --- LAVA SWIMMING VARIABLES ---
 var lava_swim_power = -160.0
 var lava_horizontal_drag = 0.85
-
-# --- Attack Variables ---
+# --- ATTACK VARIABLES ---
 var can_attack := true
 var is_attacking := false
 var attack_cooldown := 0.4
@@ -58,6 +57,7 @@ func _physics_process(delta: float) -> void:
 			_handle_lava_damage(delta)
 		else:
 			lava_damage_timer = 0.0
+
 	# 2. HANDLE JUMP / SWIM
 	if Input.is_action_just_pressed(\"ui_accept\"):
 		if is_in_lava:
@@ -65,9 +65,11 @@ func _physics_process(delta: float) -> void:
 		elif jump_count < 2:
 			jump_count += 1
 			velocity.y = jump_power * jump_multiplier
+
 	# 3. DASH
 	if Input.is_action_just_pressed(\"dash\") and can_dash and not is_dashing:
 		_start_dash()
+
 	# 4. HANDLE MOVEMENT
 	direction = Input.get_axis(\"move_left\", \"move_right\")
 	var final_speed = speed * speed_multiplier
@@ -83,14 +85,16 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction * final_speed
 			else:
 				velocity.x = move_toward(velocity.x, 0, final_speed)
-	#Attack handle
+
+	# 5. ATTACK
 	if Input.is_action_just_pressed(\"attack\"):
 		_attack()
-	
+
 	move_and_slide()
+
 # --- DASH FUNCTIONS ---
 func _start_dash():
-	if is_dashing or not can_dash:  # double guard
+	if is_dashing or not can_dash:
 		return
 	is_dashing = true
 	can_dash = false
@@ -106,6 +110,31 @@ func _start_dash():
 	await get_tree().create_timer(dash_cooldown).timeout
 	can_dash = true
 
+# --- ATTACK FUNCTIONS ---
+func _attack():
+	if not can_attack or is_dashing:
+		return
+
+	can_attack = false
+	is_attacking = true
+	velocity.x = 0
+
+	await get_tree().create_timer(0.4).timeout
+	is_attacking = false
+	await get_tree().create_timer(attack_cooldown).timeout
+	can_attack = true
+
+func _enable_hitbox():
+	$AttackArea.monitoring = true
+
+func _disable_hitbox():
+	$AttackArea.monitoring = false
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body == self:
+		return
+	if body.has_method(\"TakeDamage\"):
+		body.TakeDamage(10)
 
 # --- LAVA DAMAGE ---
 func _handle_lava_damage(delta: float) -> void:
@@ -113,6 +142,7 @@ func _handle_lava_damage(delta: float) -> void:
 	if lava_damage_timer >= lava_damage_interval:
 		TakeDamage(lava_damage_amount)
 		lava_damage_timer = 0.0
+
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
 	currentHealthPoints -= damageTaken
@@ -120,52 +150,26 @@ func TakeDamage(damageTaken):
 	modulate = Color(1, 0.2, 0.2)
 	var tween = create_tween()
 	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.15)
-	
+
 	# Spawn damage number
 	var dmg_num = damage_number_scene.instantiate()
 	get_parent().add_child(dmg_num)
 	dmg_num.spawn(damageTaken, global_position + Vector2(0, -40))
-	
+
 	# Screen shake
 	var camera = get_tree().get_first_node_in_group(\"camera\")
 	if camera:
 		camera.shake(6.0)
-	
+
 	if currentHealthPoints <= 0:
 		Death()
+
 func ApplyKnockback(force: Vector2) -> void:
 	velocity += force
+
 func Death():
 	print(\"GAME OVER!\")
-	get_tree().change_scene_to_file(\"res://main_menu.tscn\")
-	
-func _attack():
-	if not can_attack or is_dashing:
-		return
-	
-	can_attack = false
-	is_attacking = true
-	
-	velocity.x = 0
-	
-	await $PlayerAnimator/AnimationPlayer.animation_finished
-	is_attacking = false
-	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true
-
-
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body == self:
-		return
-		
-	if body.has_method(\"TakeDamage\"):
-		body.TakeDamage(10)
-	
-func _enable_hitbox():
-	$AttackArea.monitoring = true
-
-func _disable_hitbox():
-	$AttackArea.monitoring = false
+	get_tree().call_deferred(\"change_scene_to_file\", \"res://main_menu.tscn\")
 "
 
 [sub_resource type="Animation" id="Animation_i3pqv"]

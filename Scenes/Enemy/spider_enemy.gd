@@ -4,7 +4,7 @@ var player_inside = false
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
-func _process(delta):
+func _process(_delta):
 
 	if ray_cast_left.is_colliding():
 		direction = 1
@@ -19,7 +19,7 @@ func _process(delta):
 
 
 	move_and_slide()
-func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_area_2d_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body.has_method("TakeDamage"):
 		body.TakeDamage(8)  # Damage the player
 		

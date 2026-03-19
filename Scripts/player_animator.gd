@@ -5,7 +5,7 @@ extends Node2D
 @export var sprite : Sprite2D
 
 
-func _process(delta):
+func _process(_delta):
 	if player_controller.direction == 1:
 		sprite.flip_h = false
 		$"../AttackArea".position.x = abs($"../AttackArea".position.x)
