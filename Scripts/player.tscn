@@ -152,6 +152,17 @@ func _attack():
 	is_attacking = false
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.has_method(\"TakeDamage\"):
+		body.TakeDamage(10)
+	
+func _enable_hitbox():
+	$AttackArea.monitoring = true
+
+func _disable_hitbox():
+	$AttackArea.monitoring = false
 "
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
@@ -216,7 +227,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dewun"]
 resource_name = "attack1"
-length = 1.75
+length = 2.0
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -241,6 +252,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Rect2(198, 60, 26, 20), Rect2(341, 60, 28, 20), Rect2(476, 60, 68, 20), Rect2(623, 60, 58, 20), Rect2(767, 60, 56, 20), Rect2(910, 60, 54, 20), Rect2(1056, 60, 50, 20), Rect2(1207, 60, 41, 20)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_enable_hitbox"
+}, {
+"args": [],
+"method": &"_disable_hitbox"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_e30d2"]
@@ -381,7 +409,7 @@ height = 18.0
 atlas = ExtResource("2_onrkg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e30d2"]
-size = Vector2(26, 17)
+size = Vector2(16, 17)
 
 [node name="Player" type="CharacterBody2D" unique_id=229956183]
 script = SubResource("GDScript_4flbx")
@@ -408,7 +436,6 @@ region_enabled = true
 region_rect = Rect2(56, 60, 24, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1867721666]
-visible = false
 position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
@@ -429,5 +456,7 @@ position = Vector2(16, -7)
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=240828775]
-position = Vector2(1, -1)
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_e30d2")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
