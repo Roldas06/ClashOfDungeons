@@ -155,7 +155,9 @@ func _attack():
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	print(body.name)
+	if body == self:
+		return
+		
 	if body.has_method(\"TakeDamage\"):
 		body.TakeDamage(10)
 	
