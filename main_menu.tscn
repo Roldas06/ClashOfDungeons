@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdmmy1donusr4" path="res://backroundasZaidimui2.png" id="2_7vrkn"]
 [ext_resource type="AudioStream" uid="uid://df3cjb6xrjkad" path="res://The Grand Affair - Coupe  NO COPYRIGHT 8-bit Music.mp3" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://dm6l8lwiapaco" path="res://panel_2.gd" id="4_jix8l"]
+[ext_resource type="Script" uid="uid://dykwhuclmg7pu" path="res://audio_control.gd" id="5_glbon"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
 
@@ -36,6 +37,14 @@ shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe12f"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jix8l"]
+color = Color(1, 1, 1, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_glbon"]
+color = Color(0.26791897, 0.5748964, 0.3252775, 1)
+thickness = 8
+
 [node name="MainMenu" type="Control" unique_id=1400388205]
 layout_mode = 3
 anchors_preset = 15
@@ -60,6 +69,7 @@ scale = Vector2(1.1316829, 1.2665626)
 texture = ExtResource("2_7vrkn")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1957560105]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -119,6 +129,7 @@ text = "Quit"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1140764794]
 stream = ExtResource("3_fu7sn")
 autoplay = true
+bus = &"Music"
 
 [node name="Options" type="Panel" parent="." unique_id=1383629830]
 layout_mode = 1
@@ -165,7 +176,23 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_nlkkf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qe12f")
 text = "Back"
 
+[node name="AudioControl" type="HSlider" parent="Options" unique_id=1614004910]
+layout_mode = 0
+offset_left = -164.0
+offset_top = -140.0
+offset_right = 169.0
+offset_bottom = -93.0
+theme_override_styles/slider = SubResource("StyleBoxLine_jix8l")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_glbon")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_glbon")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("5_glbon")
+audio_bus_name = "Music"
+
 [connection signal="pressed" from="MainButtons/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainButtons/Button3" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_options_pressed"]
+[connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
