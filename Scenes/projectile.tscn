@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dpesbef27le8x"]
+
+[ext_resource type="Texture2D" uid="uid://djv6j1e28nawo" path="res://assets/boltsheet.png" id="1_f8cdk"]
+[ext_resource type="Script" uid="uid://cu6tqf2ob6tb4" path="res://Scenes/projectile.gd" id="1_yr2qt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr2qt"]
+atlas = ExtResource("1_f8cdk")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl4hk"]
+atlas = ExtResource("1_f8cdk")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4467"]
+atlas = ExtResource("1_f8cdk")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1077"]
+atlas = ExtResource("1_f8cdk")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgh1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr2qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl4hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4467")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1077")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tl4hk"]
+height = 44.0
+
+[node name="Projectile" type="Area2D" unique_id=1167287377]
+script = ExtResource("1_yr2qt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1039365445]
+rotation = -3.1415927
+scale = Vector2(0.38372573, 0.38372573)
+sprite_frames = SubResource("SpriteFrames_cgh1o")
+frame_progress = 0.9358484
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=405792383]
+rotation = 1.5707964
+scale = Vector2(0.17704675, 0.17704675)
+shape = SubResource("CapsuleShape2D_tl4hk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

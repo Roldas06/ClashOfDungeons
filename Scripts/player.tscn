@@ -40,6 +40,8 @@ var lava_horizontal_drag = 0.85
 var can_attack := true
 var is_attacking := false
 var attack_cooldown := 0.4
+# --- PROJECTILE VARIABLES ---
+var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
 
 func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY / LAVA PHYSICS
@@ -89,6 +91,10 @@ func _physics_process(delta: float) -> void:
 	# 5. ATTACK
 	if Input.is_action_just_pressed(\"attack\"):
 		_attack()
+		
+	# 6. PROJECTILE
+	if Input.is_action_just_pressed(\"projectile\"):
+		shoot()
 
 	move_and_slide()
 
@@ -142,6 +148,21 @@ func _handle_lava_damage(delta: float) -> void:
 	if lava_damage_timer >= lava_damage_interval:
 		TakeDamage(lava_damage_amount)
 		lava_damage_timer = 0.0
+
+# --- PROJECTILE FUNCTIONS ---
+func shoot():
+	var projectile = projectile_scene.instantiate()
+	get_parent().add_child(projectile)
+	
+	#Direction from hand rotation
+	var dir = Vector2.RIGHT.rotated($HandAnchor.global_rotation)
+	
+	projectile.direction = dir
+	projectile.projectile_owner = self
+	projectile.rotation = $HandAnchor.global_rotation
+	#Spawn at hand position
+	projectile.global_position = $HandAnchor/Crosshair.global_position + dir * 10
+	
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
@@ -445,12 +466,11 @@ region_rect = Rect2(56, 60, 24, 20)
 shape = SubResource("CapsuleShape2D_2hs0m")
 
 [node name="HandAnchor" type="Node2D" parent="." unique_id=737434412]
-visible = false
-position = Vector2(0, -6.000001)
 scale = Vector2(0.8890144, 0.93112403)
 script = ExtResource("2_i3pqv")
 
 [node name="Crosshair" type="Sprite2D" parent="HandAnchor" unique_id=25711850]
+visible = false
 position = Vector2(13.498095, 1.0739717)
 rotation = 1.5707964
 scale = Vector2(0.86064214, 1.3129108)
