@@ -3,6 +3,7 @@ extends Node2D
 @export var player_controller : CharacterBody2D  
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
+@onready var sfx_run: AudioStreamPlayer2D = $"../sfx_run"
 
 
 func _process(_delta):
@@ -23,8 +24,11 @@ func _process(_delta):
 	
 	if abs(player_controller.velocity.x) > 0.0:
 		animation_player.play("move")
+		if not sfx_run.playing:
+			sfx_run.play()
 	else:
 		animation_player.play("Idle")
+		sfx_run.stop()
 	
 	if player_controller.velocity.y < 0.0:
 		animation_player.play("jump")

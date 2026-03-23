@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmk4dby04p64m"
+path="res://.godot/imported/runing sound.mp3-725605c5445d6e6b40d406c77396bb9c.mp3str"
+
+[deps]
+
+source_file="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/runing sound.mp3"
+dest_files=["res://.godot/imported/runing sound.mp3-725605c5445d6e6b40d406c77396bb9c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
