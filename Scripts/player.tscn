@@ -480,6 +480,7 @@ region_rect = Rect2(56, 60, 24, 20)
 [node name="sfx_run" type="AudioStreamPlayer2D" parent="." unique_id=1135674843]
 stream = ExtResource("7_dewun")
 volume_db = 9.092
+bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1867721666]
 shape = SubResource("CapsuleShape2D_2hs0m")
