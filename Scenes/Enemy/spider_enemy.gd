@@ -7,12 +7,14 @@ const DAMAGE_INTERVAL = 0.8  # seconds between damage ticks
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
-
+@onready var animated_sprite = $AnimatedSprite2D
 func _process(delta):
 	if ray_cast_left.is_colliding():
 		direction = 1
+		animated_sprite.flip_h = false
 	elif ray_cast_right.is_colliding():
 		direction = -1
+		animated_sprite.flip_h = true
 	velocity.y = 0
 	velocity.x = direction * speed
 	move_and_slide()
