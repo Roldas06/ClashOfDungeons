@@ -44,6 +44,8 @@ var is_attacking := false
 var attack_cooldown := 0.4
 # --- PROJECTILE VARIABLES ---
 var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
+# --- BLOCKING VARIABLES ---
+var is_blocking := false
 
 func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY / LAVA PHYSICS
@@ -98,6 +100,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(\"projectile\"):
 		shoot()
 
+	# 7. BLOCKING
+	if Input.is_action_just_pressed(\"block\"):
+		is_blocking = true
+		can_attack = false
+	if Input.is_action_just_released(\"block\"):
+		is_blocking = false
+		can_attack = true
+		
 	move_and_slide()
 
 # --- DASH FUNCTIONS ---
@@ -168,6 +178,9 @@ func shoot():
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
+	if is_blocking:
+		return
+	
 	currentHealthPoints -= damageTaken
 	healthChanged.emit(currentHealthPoints)
 	modulate = Color(1, 0.2, 0.2)
