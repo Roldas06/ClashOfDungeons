@@ -139,8 +139,8 @@ func _disable_hitbox():
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
-	if body.has_method(\"TakeDamage\"):
-		body.TakeDamage(10)
+	if body.has_method(\"take_damage\"):
+		body.take_damage(10)
 
 # --- LAVA DAMAGE ---
 func _handle_lava_damage(delta: float) -> void:

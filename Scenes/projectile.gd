@@ -26,8 +26,8 @@ func _on_body_entered(body):
 	if body == projectile_owner:
 		return
 	
-	if body.has_method("TakeDamage"):
-		body.TakeDamage(damage)
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
 		
 	has_hit = true
 	speed = 0
