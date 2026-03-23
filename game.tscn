@@ -1532,4 +1532,4 @@ position = Vector2(706.99994, -578)
 scale = Vector2(1.2131985, 1.2131985)
 
 [node name="SpiderEnemy" parent="." unique_id=457331688 instance=ExtResource("21_f1jbl")]
-position = Vector2(57, -31)
+position = Vector2(58, -28)

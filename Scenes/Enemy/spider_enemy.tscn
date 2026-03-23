@@ -43,7 +43,7 @@ animations = [{
 size = Vector2(6.5, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbk52"]
-size = Vector2(13.5, 8.5)
+size = Vector2(16, 9.25)
 
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
 script = ExtResource("1_2oigq")
@@ -61,7 +61,7 @@ shape = SubResource("RectangleShape2D_2oigq")
 [node name="Area2D" type="Area2D" parent="." unique_id=1677233158]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1227939319]
-position = Vector2(2, 1)
+position = Vector2(2, 1.375)
 shape = SubResource("RectangleShape2D_kbk52")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=217809760]
@@ -71,4 +71,5 @@ target_position = Vector2(9, 0)
 target_position = Vector2(-5, 0)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

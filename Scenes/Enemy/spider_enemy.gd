@@ -1,44 +1,51 @@
 extends "res://base_enemy.gd"
-var direction = 1 
+
+var direction = 1
 var player_inside = false
+var damage_cooldown = 0.0
+const DAMAGE_INTERVAL = 0.8  # seconds between damage ticks
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
-func _process(_delta):
 
+func _process(delta):
 	if ray_cast_left.is_colliding():
 		direction = 1
 	elif ray_cast_right.is_colliding():
 		direction = -1
-
-	
+	velocity.y = 0
 	velocity.x = direction * speed
-
-	
-
-
-
 	move_and_slide()
-func _on_area_2d_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+
+	# Tick down cooldown and deal damage while player is overlapping
+	if player_inside and damage_cooldown <= 0.0:
+		_deal_damage_to_player()
+		damage_cooldown = DAMAGE_INTERVAL
+	elif damage_cooldown > 0.0:
+		damage_cooldown -= delta
+
+func _deal_damage_to_player():
+	var area = $Area2D
+	for body in area.get_overlapping_bodies():
+		if body.has_method("TakeDamage"):
+			body.TakeDamage(8)
+			if body.has_method("ApplyKnockback"):
+				var delta_vec = body.global_position - global_position
+				var dir = Vector2.ZERO
+				if abs(delta_vec.x) > abs(delta_vec.y):
+					dir.x = sign(delta_vec.x)
+					dir.y = -0.5
+				else:
+					dir.y = sign(delta_vec.y)
+				dir = dir.normalized() * knockback_strength
+				body.ApplyKnockback(dir)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("TakeDamage"):
-		body.TakeDamage(8)  # Damage the player
-		
-		if body.has_method("ApplyKnockback"):
-			# Vector from spike center to player
-			var delta = body.global_position - global_position
-			
-			var dir = Vector2.ZERO
-			
-			# Determine horizontal or vertical knockback based on dominant axis
-			if abs(delta.x) > abs(delta.y):
-				# Player is more to the left or right
-				dir.x = sign(delta.x)
-				dir.y = -0.5  # optional small vertical lift
-			else:
-				# Player is more above or below
-				dir.y = sign(delta.y)
-				dir.x = 0  # optional small horizontal push
-			
-			# Normalize and scale
-			dir = dir.normalized() * knockback_strength
-			body.ApplyKnockback(dir)
+		player_inside = true
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.has_method("TakeDamage"):
+		player_inside = false
+		damage_cooldown = 0.0
