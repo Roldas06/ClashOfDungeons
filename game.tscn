@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://c0vjreeki0pdv" path="res://Scenes/hearts_container.tscn" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://mldt63bh7pva" path="res://Scenes/hearts_container.gd" id="6_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://ov6e161byi4s" path="res://Background.tscn" id="7_eow3j"]
+[ext_resource type="Script" uid="uid://dxu4fl3s3ayq3" path="res://help_screen.gd" id="7_i2p71"]
 [ext_resource type="Texture2D" uid="uid://dpjg1285hqvqj" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="8_boyg6"]
 [ext_resource type="Texture2D" uid="uid://cnkdikk0cv61y" path="res://assets/oak_woods_v1.0/decorations/shop.png" id="8_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://ci5yfxy285crg" path="res://Teleporter.tscn" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://bp0lehio331ly" path="res://ekranashelpzaidimiui2.png" id="8_xa8c5"]
 [ext_resource type="Texture2D" uid="uid://c3msijbmssct" path="res://assets/oak_woods_v1.0/decorations/fence_1.png" id="9_e8heu"]
 [ext_resource type="PackedScene" uid="uid://bdtol6cewmqyd" path="res://platform.tscn" id="9_e36ub"]
 [ext_resource type="PackedScene" uid="uid://c86jv0uyh5n4" path="res://lava.tscn" id="9_hb5m1"]
@@ -1401,6 +1403,32 @@ shape = SubResource("WorldBoundaryShape2D_sb48q")
 [node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
 alignment = 1
 script = ExtResource("6_r0x5m")
+
+[node name="HelpScreen" type="Panel" parent="CanvasLayer" unique_id=375815941]
+visible = false
+visibility_layer = 4
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_i2p71")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HelpScreen" unique_id=1978388978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -447.5
+offset_top = -323.0
+offset_right = 447.5
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_xa8c5")
 
 [node name="TileMap" type="Node2D" parent="." unique_id=5178889]
 
