@@ -1772,6 +1772,7 @@ position = Vector2(-106, -8)
 shape = SubResource("WorldBoundaryShape2D_sb48q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=790482934]
+layer = 8
 
 [node name="heartsContainer" parent="CanvasLayer" unique_id=896393306 instance=ExtResource("4_sb48q")]
 z_index = 1

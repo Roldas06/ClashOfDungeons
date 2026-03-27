@@ -93,6 +93,8 @@ func _start_transition(body: CharacterBody2D):
 	# Step 4 — teleport while dark
 	tween.tween_callback(func():
 		body.global_position = target.global_position
+		# Resume physics immediately so falling starts while still hidden by black screen.
+		body.set_physics_process(true)
 	)
 
 	# Step 5 — hold
@@ -108,6 +110,5 @@ func _start_transition(body: CharacterBody2D):
 	# Step 8 — done
 	tween.tween_callback(func():
 		canvas.hide()
-		body.set_physics_process(true)
 		is_transitioning = false
 	)

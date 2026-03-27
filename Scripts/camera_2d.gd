@@ -7,7 +7,7 @@ var target_zoom := 5.0
 var shake_strength := 0.0
 var shake_decay := 8.0
 
-@export var cave_overlay_layer: int = 20
+@export var cave_overlay_layer: int = 5
 @export var cave_vignette_max_strength: float = 1.0
 @export var cave_ambient_darkness: float = 0.35
 @export var cave_radius: float = 0.22
@@ -26,7 +26,7 @@ func _ready():
 
 func _build_cave_overlay() -> void:
 	cave_overlay_canvas = CanvasLayer.new()
-	# High layer so it covers UI (hearts)
+	# Above world, below UI/transition layers.
 	cave_overlay_canvas.layer = cave_overlay_layer
 	add_child(cave_overlay_canvas)
 
@@ -63,7 +63,7 @@ func _build_cave_overlay() -> void:
 	cave_overlay_canvas.add_child(cave_overlay)
 	cave_overlay_canvas.hide()
 
-func set_cave_mode(enabled: bool) -> void:
+func set_cave_mode(_enabled: bool) -> void:
 	var target_strength := (clampf(cave_vignette_max_strength, 0.0, 1.0) if enabled else 0.0)
 	var target_ambient := (clampf(cave_ambient_darkness, 0.0, 1.0) if enabled else 0.0)
 
