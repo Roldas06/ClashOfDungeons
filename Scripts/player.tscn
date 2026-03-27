@@ -149,6 +149,8 @@ func _disable_hitbox():
 	$AttackArea.monitoring = false
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	if not is_attacking:
+		return
 	if body == self:
 		return
 	if body.has_method(\"take_damage\"):

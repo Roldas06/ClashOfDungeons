@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ceryn1xa0edpk"]
+
+[ext_resource type="Script" uid="uid://cvtfqnl1rj20x" path="res://Scenes/breakable_block.gd" id="1_gst7m"]
+[ext_resource type="Texture2D" uid="uid://dpjg1285hqvqj" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_6njcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0x80"]
+size = Vector2(16, 16)
+
+[node name="BreakableBlock" type="StaticBody2D" unique_id=1618651611]
+script = ExtResource("1_gst7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2111601469]
+shape = SubResource("RectangleShape2D_b0x80")
+
+[node name="WorldTileset" type="Sprite2D" parent="." unique_id=75395275]
+texture = ExtResource("2_6njcg")
+region_enabled = true
+region_rect = Rect2(16, 32, 16, 17)
