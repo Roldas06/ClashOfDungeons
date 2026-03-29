@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bt5jgvdnv12fg" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Attack 1.png" id="3_e30d2"]
 [ext_resource type="Texture2D" uid="uid://drfsifieua1bf" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Idle.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://c347ee2a3rarl" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Dash.png" id="3_tnia3"]
+[ext_resource type="Texture2D" uid="uid://cqaxeluugidbi" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/Death.png" id="5_a6hnc"]
 [ext_resource type="AudioStream" uid="uid://dmk4dby04p64m" path="res://assets/oak_woods_v1.0/Luneblade - Little Axion (Free)/Luneblade - Little Axion (Free)/Sprite Sheet/runing sound.mp3" id="7_dewun"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
@@ -16,6 +17,7 @@ script/source = "extends CharacterBody2D
 @export var jump_power = 30.0
 @export var gravity = 900.0
 
+var is_dead := false
 var is_in_lava = false
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
@@ -206,6 +208,10 @@ func ApplyKnockback(force: Vector2) -> void:
 	velocity += force
 
 func Death():
+	is_dead = true
+	set_physics_process(false)
+	var anim_length = 1.2 
+	await get_tree().create_timer(anim_length).timeout
 	print(\"GAME OVER!\")
 	get_tree().call_deferred(\"change_scene_to_file\", \"res://main_menu.tscn\")
 "
@@ -345,6 +351,35 @@ tracks/1/keys = {
 "values": [Rect2(343, 60, 27, 20), Rect2(486, 60, 28, 20), Rect2(515.735, 60, 28, 20), Rect2(1207, 60, 27, 20), Rect2(1351, 60, 27, 20)]
 }
 
+[sub_resource type="Animation" id="Animation_d36ei"]
+resource_name = "death"
+length = 2.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_a6hnc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(776, 60, 24, 20), Rect2(920, 60, 24, 20), Rect2(1064, 60, 24, 20), Rect2(1208, 60, 24, 20), Rect2(1352, 60, 24, 20), Rect2(1494, 60, 31, 20), Rect2(1633, 60, 35, 20), Rect2(1784, 60, 29.11, 20), Rect2(2063.471, 60, 37.397, 20), Rect2(2209.094, 60, 39.711, 20)]
+}
+
 [sub_resource type="Animation" id="Animation_sweqy"]
 resource_name = "fall"
 length = 0.75
@@ -441,6 +476,7 @@ _data = {
 &"RESET": SubResource("Animation_hqtel"),
 &"attack1": SubResource("Animation_dewun"),
 &"dash": SubResource("Animation_e30d2"),
+&"death": SubResource("Animation_d36ei"),
 &"fall": SubResource("Animation_sweqy"),
 &"jump": SubResource("Animation_2hs0m"),
 &"move": SubResource("Animation_1jxqw")

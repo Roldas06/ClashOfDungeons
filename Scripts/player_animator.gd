@@ -14,6 +14,10 @@ func _process(_delta):
 		sprite.flip_h = true
 		$"../AttackArea".position.x = -abs($"../AttackArea".position.x)
 	
+	if player_controller.is_dead:
+		animation_player.play("death")
+		return
+		
 	if player_controller.is_dashing:
 		animation_player.play("dash")
 		return
