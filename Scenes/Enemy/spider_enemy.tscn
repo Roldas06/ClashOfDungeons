@@ -48,6 +48,8 @@ size = Vector2(17, 9.25)
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
 script = ExtResource("1_2oigq")
 knockback_strength = 200
+speed = null
+max_hp = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1109142807]
 sprite_frames = SubResource("SpriteFrames_bd8id")
