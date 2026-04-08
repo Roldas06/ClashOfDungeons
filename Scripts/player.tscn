@@ -49,6 +49,10 @@ var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
 var can_shoot := true
 # --- BLOCKING VARIABLES ---
 var is_blocking := false
+var stamina := 100.0
+var max_stamina := 100.0
+var stamina_drain := 30.0
+var stamina_recovery := 20.0
 
 func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY / LAVA PHYSICS
@@ -109,12 +113,16 @@ func _physics_process(delta: float) -> void:
 			$ProjectileCooldown.start()
 
 	# 7. BLOCKING
-	if Input.is_action_just_pressed(\"block\"):
+	if Input.is_action_pressed(\"block\") and stamina > 0:
 		is_blocking = true
 		can_attack = false
-	if Input.is_action_just_released(\"block\"):
+		stamina -= stamina_drain * delta
+	else:
 		is_blocking = false
 		can_attack = true
+		stamina += stamina_recovery * delta
+
+	stamina = clamp(stamina, 0, max_stamina)
 		
 	move_and_slide()
 
