@@ -46,6 +46,7 @@ var is_attacking := false
 var attack_cooldown := 0.4
 # --- PROJECTILE VARIABLES ---
 var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
+var can_shoot := true
 # --- BLOCKING VARIABLES ---
 var is_blocking := false
 
@@ -100,7 +101,12 @@ func _physics_process(delta: float) -> void:
 		
 	# 6. PROJECTILE
 	if Input.is_action_just_pressed(\"projectile\"):
-		shoot()
+		if not can_shoot:
+			pass
+		else:
+			shoot()
+			can_shoot = false
+			$ProjectileCooldown.start()
 
 	# 7. BLOCKING
 	if Input.is_action_just_pressed(\"block\"):
@@ -179,6 +185,9 @@ func shoot():
 	#Spawn at hand position
 	projectile.global_position = $HandAnchor/Crosshair.global_position + dir * 10
 	
+func _on_projectile_cooldown_timeout() -> void:
+	can_shoot = true
+
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
@@ -541,4 +550,9 @@ monitoring = false
 [node name="AttackHitbox" type="CollisionShape2D" parent="AttackArea" unique_id=240828775]
 shape = SubResource("RectangleShape2D_e30d2")
 
+[node name="ProjectileCooldown" type="Timer" parent="." unique_id=5336929]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="ProjectileCooldown" to="." method="_on_projectile_cooldown_timeout"]
