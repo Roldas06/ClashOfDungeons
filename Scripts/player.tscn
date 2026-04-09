@@ -53,6 +53,8 @@ var stamina := 100.0
 var max_stamina := 100.0
 var stamina_drain := 30.0
 var stamina_recovery := 20.0
+# --- COLLECTED KEY VARIABLES ---
+var collected_keys := 0
 
 func _physics_process(delta: float) -> void:
 	# 1. APPLY GRAVITY / LAVA PHYSICS
