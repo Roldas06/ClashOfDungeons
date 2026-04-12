@@ -17,7 +17,6 @@ script/source = "extends CharacterBody2D
 @export var speed = 300.0
 @export var jump_power = 30.0
 @export var gravity = 900.0
-@onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
 
 var is_dead := false
 var is_in_lava = false
@@ -207,17 +206,17 @@ func TakeDamage(damageTaken):
 		return
 	
 	currentHealthPoints -= damageTaken
-	sfx_damage.play()
-	
 	healthChanged.emit(currentHealthPoints)
 	modulate = Color(1, 0.2, 0.2)
 	var tween = create_tween()
 	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.15)
 
+	# Spawn damage number
 	var dmg_num = damage_number_scene.instantiate()
 	get_parent().add_child(dmg_num)
 	dmg_num.spawn(damageTaken, global_position + Vector2(0, -40))
 
+	# Screen shake
 	var camera = get_tree().get_first_node_in_group(\"camera\")
 	if camera:
 		camera.shake(6.0)
