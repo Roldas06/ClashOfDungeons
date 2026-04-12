@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://hdpg7fy3pf4l"]
+
+[ext_resource type="Script" uid="uid://dembh7v4opah0" path="res://Scripts/Collectable.gd" id="1_hmpp3"]
+[ext_resource type="Texture2D" uid="uid://dy7st7c6bq0e0" path="res://assets/oak_woods_v1.0/heal.png" id="2_k26tw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf0mi"]
+
+[node name="Area2D" type="Area2D" unique_id=709470161]
+script = ExtResource("1_hmpp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1327741868]
+position = Vector2(-0.50000036, -0.49999958)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("2_k26tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1374169485]
+shape = SubResource("CircleShape2D_lf0mi")
