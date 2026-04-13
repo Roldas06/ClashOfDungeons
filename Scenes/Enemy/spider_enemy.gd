@@ -4,6 +4,7 @@ var direction = 1
 var player_inside = false
 var damage_cooldown = 0.0
 const DAMAGE_INTERVAL = 0.8  # seconds between damage ticks
+@onready var sfx_damage: AudioStreamPlayer = $sfx_damage
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
@@ -51,3 +52,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("TakeDamage"):
 		player_inside = false
 		damage_cooldown = 0.0
+func on_hurt():
+	sfx_damage.play()
+	
+func on_death():
+	sfx_damage.play()
