@@ -1,5 +1,7 @@
 extends "res://base_enemy.gd"
 
+@onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
+
 var direction: Vector2
 var is_bat_chase: bool
 var player: CharacterBody2D
@@ -53,9 +55,11 @@ func handle_animation():
 	elif current_direction.x > 0:
 		animated_sprite.flip_h = false
 func on_hurt():
+	sfx_damage.play()
 	$AnimatedSprite2D.play("hurt")
 	
 func on_death():
+	sfx_damage.play()
 	$AnimatedSprite2D.play("death")
 
 		
