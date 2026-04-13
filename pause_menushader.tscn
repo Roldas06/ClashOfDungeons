@@ -18,6 +18,35 @@ void fragment(){
 shader = SubResource("Shader_e3xwf")
 shader_parameter/lod = 0.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3xwf"]
+bg_color = Color(0.28485015, 0.28485036, 0.28485018, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cdli"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1chsw"]
+bg_color = Color(0.59313357, 0.5931336, 0.5931334, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvga2"]
+
 [node name="Pause_menu" type="Control" unique_id=1637532932]
 process_mode = 3
 layout_mode = 3
@@ -38,16 +67,11 @@ offset_bottom = 870.0
 script = ExtResource("1_6pggi")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1185013775]
+modulate = Color(1, 1, 1, 0.3882353)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -394.0
-offset_top = -305.5
-offset_right = 394.0
-offset_bottom = 305.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -55,21 +79,77 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 72
 
-[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1472327814]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Resume"
+[node name="MainButtons" type="VBoxContainer" parent="." unique_id=1313065245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = -119.1875
+offset_right = 249.0
+offset_bottom = 119.1875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 27
 
-[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer" unique_id=48979644]
-layout_mode = 2
+[node name="Resume" type="Button" parent="." unique_id=78534729]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 320.8125
+offset_right = 969.0
+offset_bottom = 381.8125
 size_flags_vertical = 3
-text = "Restart"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3xwf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4cdli")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1chsw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bvga2")
+text = "Resume
+"
 
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1798192834]
-layout_mode = 2
+[node name="Restart" type="Button" parent="." unique_id=1701141705]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 408.8125
+offset_right = 969.0
+offset_bottom = 469.8125
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3xwf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4cdli")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1chsw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bvga2")
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="." unique_id=51103345]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 496.8125
+offset_right = 969.0
+offset_bottom = 558.8125
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3xwf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4cdli")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1chsw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bvga2")
 text = "Quit"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

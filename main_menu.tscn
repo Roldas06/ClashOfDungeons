@@ -70,7 +70,6 @@ scale = Vector2(1.2879801, 1.2857813)
 texture = ExtResource("2_7vrkn")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1957560105]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,6 +132,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="Options" type="Panel" parent="." unique_id=1383629830]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296
