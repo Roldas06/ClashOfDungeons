@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://df3cjb6xrjkad" path="res://The Grand Affair - Coupe  NO COPYRIGHT 8-bit Music.mp3" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://dm6l8lwiapaco" path="res://panel_2.gd" id="4_jix8l"]
 [ext_resource type="Script" uid="uid://dykwhuclmg7pu" path="res://audio_control.gd" id="5_glbon"]
+[ext_resource type="Script" uid="uid://cttuofhp3jwx1" path="res://full_screen_control.gd" id="6_nlkkf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
 
@@ -161,9 +162,9 @@ vertical_alignment = 1
 [node name="Label" type="Label" parent="Options/Label" unique_id=65662813]
 layout_mode = 0
 offset_left = -3.0
-offset_top = 129.0
+offset_top = 86.0
 offset_right = 496.0
-offset_bottom = 216.0
+offset_bottom = 173.0
 theme_override_font_sizes/font_size = 30
 text = "SFX
 "
@@ -190,10 +191,10 @@ text = "Back"
 
 [node name="AudioControl" type="HSlider" parent="Options" unique_id=1614004910]
 layout_mode = 0
-offset_left = -164.0
-offset_top = -140.0
-offset_right = 169.0
-offset_bottom = -93.0
+offset_left = -165.0
+offset_top = -167.0
+offset_right = 168.0
+offset_bottom = -120.0
 theme_override_styles/slider = SubResource("StyleBoxLine_jix8l")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_glbon")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_glbon")
@@ -205,10 +206,10 @@ audio_bus_name = "Music"
 
 [node name="SfxControl" type="HSlider" parent="Options" unique_id=414834839]
 layout_mode = 0
-offset_left = -173.0
-offset_top = -7.0
-offset_right = 160.0
-offset_bottom = 40.0
+offset_left = -172.0
+offset_top = -83.0
+offset_right = 161.0
+offset_bottom = -36.0
 theme_override_styles/slider = SubResource("StyleBoxLine_jix8l")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_glbon")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_glbon")
@@ -218,9 +219,19 @@ value = 0.5
 script = ExtResource("5_glbon")
 audio_bus_name = "SFX"
 
+[node name="FullScreenControl" type="CheckButton" parent="Options" unique_id=1793286047]
+layout_mode = 0
+offset_left = -168.0
+offset_top = -40.0
+offset_right = 173.0
+offset_bottom = 4.0
+text = "Fullscreen"
+script = ExtResource("6_nlkkf")
+
 [connection signal="pressed" from="MainButtons/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainButtons/Button3" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_options_pressed"]
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/SfxControl" to="Options/SfxControl" method="_on_value_changed"]
+[connection signal="toggled" from="Options/FullScreenControl" to="." method="_on_full_screen_control_toggled"]

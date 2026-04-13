@@ -26,3 +26,7 @@ func _on_button_quit_pressed() -> void:
 
 func _on_back_options_pressed() -> void:
 	_ready()
+
+
+func _on_full_screen_control_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
