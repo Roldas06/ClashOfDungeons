@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c7vukgw05yijb"]
+
+[ext_resource type="Script" uid="uid://cpiwy3583oda6" path="res://color_rect.gd" id="1_6pggi"]
+[ext_resource type="Script" uid="uid://cwnts5r1x35rc" path="res://pause_menushader.gd" id="1_e3xwf"]
+
+[sub_resource type="Shader" id="Shader_e3xwf"]
+code = "shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cdli"]
+shader = SubResource("Shader_e3xwf")
+shader_parameter/lod = 0.0
+
+[node name="Pause_menu" type="Control" unique_id=1637532932]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e3xwf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1554838273]
+material = SubResource("ShaderMaterial_4cdli")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 1426.0
+offset_bottom = 870.0
+script = ExtResource("1_6pggi")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1185013775]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -394.0
+offset_top = -305.5
+offset_right = 394.0
+offset_bottom = 305.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=239737196]
+layout_mode = 2
+theme_override_constants/separation = 72
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1472327814]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer" unique_id=48979644]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1798192834]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

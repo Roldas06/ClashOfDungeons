@@ -65,8 +65,8 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jix8l")
 
 [node name="BackroundasZaidimui2" type="Sprite2D" parent="Panel" unique_id=1913894831]
-position = Vector2(723, 436)
-scale = Vector2(1.1316829, 1.2665626)
+position = Vector2(826.7814, 443.6875)
+scale = Vector2(1.2879801, 1.2857813)
 texture = ExtResource("2_7vrkn")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1957560105]
