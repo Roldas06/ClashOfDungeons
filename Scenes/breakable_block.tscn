@@ -16,4 +16,4 @@ shape = SubResource("RectangleShape2D_b0x80")
 [node name="WorldTileset" type="Sprite2D" parent="." unique_id=75395275]
 texture = ExtResource("2_6njcg")
 region_enabled = true
-region_rect = Rect2(16, 32, 16, 17)
+region_rect = Rect2(111.609634, 47.93434, 16.711761, 16.573074)
