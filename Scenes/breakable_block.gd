@@ -49,6 +49,6 @@ func _try_drop() -> void:
 
 	var root := get_tree().current_scene
 	if root != null:
-		root.add_child(drop)
+		root.call_deferred("add_child", drop)
 	else:
-		add_sibling(drop)
+		call_deferred("add_sibling", drop)
