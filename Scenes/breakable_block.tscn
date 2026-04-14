@@ -8,6 +8,7 @@ size = Vector2(16, 16)
 
 [node name="BreakableBlock" type="StaticBody2D" unique_id=1618651611]
 script = ExtResource("1_gst7m")
+drop_chance = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2111601469]
 shape = SubResource("RectangleShape2D_b0x80")
@@ -15,4 +16,4 @@ shape = SubResource("RectangleShape2D_b0x80")
 [node name="WorldTileset" type="Sprite2D" parent="." unique_id=75395275]
 texture = ExtResource("2_6njcg")
 region_enabled = true
-region_rect = Rect2(16, 32, 16, 17)
+region_rect = Rect2(111.609634, 47.93434, 16.711761, 16.573074)

@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://c6x15bx1ss3rv"]
 
 [ext_resource type="Script" uid="uid://btauirfcmmrvj" path="res://Scenes/falling_rock.gd" id="1_frock"]
-[ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="2_cyyhn"]
+[ext_resource type="Texture2D" uid="uid://dho01jm350och" path="res://assets/crystal cave tiles.png" id="2_cyyhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
 size = Vector2(80, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rock"]
-size = Vector2(16, 11)
+size = Vector2(8, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_damage"]
-size = Vector2(18, 13)
+size = Vector2(10, 18)
 
 [node name="FallingRock" type="Node2D" unique_id=14373605]
 script = ExtResource("1_frock")
@@ -28,11 +28,14 @@ position = Vector2(0, -40)
 lock_rotation = true
 freeze = true
 
-[node name="Rock1" type="Sprite2D" parent="Rock" unique_id=1149041852]
+[node name="CrystalCaveTiles" type="Sprite2D" parent="Rock" unique_id=1085427424]
+position = Vector2(0, 3)
 texture = ExtResource("2_cyyhn")
+region_enabled = true
+region_rect = Rect2(198.13266, 91.92101, 10.683533, 20.146248)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock" unique_id=1589863965]
-position = Vector2(0, -0.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_rock")
 
 [node name="DamageArea" type="Area2D" parent="Rock" unique_id=1309831458]
@@ -40,5 +43,5 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock/DamageArea" unique_id=1099404220]
-position = Vector2(0, -0.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_damage")

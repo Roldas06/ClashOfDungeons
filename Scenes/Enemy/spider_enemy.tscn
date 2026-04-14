@@ -46,10 +46,11 @@ size = Vector2(6.5, 3)
 size = Vector2(17, 9.25)
 
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
+motion_mode = 1
 script = ExtResource("1_2oigq")
 knockback_strength = 200
-speed = null
-max_hp = null
+speed = 10
+max_hp = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1109142807]
 sprite_frames = SubResource("SpriteFrames_bd8id")
@@ -72,6 +73,9 @@ target_position = Vector2(9, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=932495638]
 target_position = Vector2(-5, 0)
 
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[node name="FloorAheadRay" type="RayCast2D" parent="." unique_id=932495639]
+position = Vector2(12, 6)
+target_position = Vector2(0, 32)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
