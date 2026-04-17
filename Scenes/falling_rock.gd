@@ -6,6 +6,7 @@ extends Node2D
 @onready var _damage_area: Area2D = $Rock/DamageArea
 var _has_dropped: bool = false
 var _damaged_player: bool = false
+var _can_hit_ground: bool = false
 
 func _ready() -> void:
 	_rock.freeze = true
@@ -22,12 +23,14 @@ func _on_trigger_body_entered(body: Node2D) -> void:
 		return
 	_has_dropped = true
 	_rock.set_deferred("freeze", false)
+	await get_tree().create_timer(0.3).timeout
+	_can_hit_ground = true
 
 func _on_rock_body_entered(body: Node2D) -> void:
-	print("signal fired: ", body.name)
 	if _rock.freeze:
 		return
-	print("rock hit: ", body.name, " groups: ", body.get_groups())
+	if not _can_hit_ground:
+		return
 	if body.is_in_group("ground"):
 		queue_free()
 
