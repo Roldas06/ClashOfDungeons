@@ -23,7 +23,7 @@ func _on_trigger_body_entered(body: Node2D) -> void:
 		return
 	_has_dropped = true
 	_rock.set_deferred("freeze", false)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.2).timeout
 	_can_hit_ground = true
 
 func _on_rock_body_entered(body: Node2D) -> void:
