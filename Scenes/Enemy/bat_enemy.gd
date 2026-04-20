@@ -15,7 +15,8 @@ func _ready():
 
 func _process(delta):
 	move(delta)
-	
+	if hp <= 0:
+		return
 	if player_inside and damage_cooldown <= 0.0:
 		_deal_damage_to_player()
 		damage_cooldown = DAMAGE_INTERVAL
@@ -56,7 +57,7 @@ func handle_animation():
 		animated_sprite.flip_h = false
 func on_hurt():
 	sfx_damage.play()
-	$AnimatedSprite2D.play("hurt")
+	#$AnimatedSprite2D.play("hurt")
 	
 func on_death():
 	sfx_damage.play()
@@ -71,15 +72,19 @@ func _deal_damage_to_player():
 			body.TakeDamage(8)
 			if body.has_method("ApplyKnockback"):
 				var delta_vec = body.global_position - global_position
-				var dir = (delta_vec.normalized()) * knockback_strength
-				body.ApplyKnockback(dir)
+				var dir = delta_vec.normalized()
+			
+				if dir.y < 0:
+					dir.y = 0
+					if dir.x == 0:
+						dir.x = 1.0  
+					dir = dir.normalized()
+				body.ApplyKnockback(dir * knockback_strength)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("TakeDamage"):
 		player_inside = true
-
-
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("TakeDamage"):

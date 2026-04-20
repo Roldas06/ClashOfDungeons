@@ -50,7 +50,6 @@ motion_mode = 1
 script = ExtResource("1_2oigq")
 knockback_strength = 200
 speed = 10
-max_hp = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1109142807]
 sprite_frames = SubResource("SpriteFrames_bd8id")

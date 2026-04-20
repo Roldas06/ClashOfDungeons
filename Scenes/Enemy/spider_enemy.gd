@@ -1,17 +1,12 @@
 extends "res://base_enemy.gd"
 
-## =============================================================================
-## APEX CRAWLER - IDLE VERSION
-## Handles: Staying in place when out of range, Box LOS, and Overshoot Climbing.
-## =============================================================================
 
-# --- Signals ---
 signal state_changed(old_state, new_state)
 
-# --- Enums ---
+
 enum State { IDLE, PATROL, CHASE, CLIMB, ATTACK, STUNNED }
 
-# --- Exported Variables ---
+
 @export_group("Locomotion")
 @export var walk_speed: float = 45.0      
 @export var chase_speed: float = 55.0     
@@ -29,8 +24,8 @@ enum State { IDLE, PATROL, CHASE, CLIMB, ATTACK, STUNNED }
 @export var lose_interest_range: float = 150.0
 @export var prediction_weight: float = 0.2
 
-# --- Internal Variables ---
-var current_state: State = State.IDLE # Default to IDLE
+
+var current_state: State = State.IDLE 
 var direction := 1
 var player_inside := false
 var damage_cooldown := 0.0
