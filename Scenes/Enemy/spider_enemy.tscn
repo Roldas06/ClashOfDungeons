@@ -43,7 +43,7 @@ animations = [{
 size = Vector2(6.5, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbk52"]
-size = Vector2(17, 9.25)
+size = Vector2(14.5, 9.625)
 
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
 motion_mode = 1
@@ -63,11 +63,11 @@ shape = SubResource("RectangleShape2D_2oigq")
 [node name="Area2D" type="Area2D" parent="." unique_id=1677233158]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1227939319]
-position = Vector2(1.5, 1)
+position = Vector2(2.25, 0.8125)
 shape = SubResource("RectangleShape2D_kbk52")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=217809760]
-target_position = Vector2(9, 0)
+target_position = Vector2(10, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=932495638]
 target_position = Vector2(-5, 0)

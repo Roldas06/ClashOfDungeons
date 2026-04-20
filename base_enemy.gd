@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export var knockback_strength = 500
-@export var speed := 100
+@export var speed := 200
 @export var max_hp := 4
 
 var hp := 4
