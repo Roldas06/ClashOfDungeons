@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bkkk30e1oqjq7" path="res://Scripts/Quit1.png" id="9_e5qqf"]
 [ext_resource type="Texture2D" uid="uid://cthu35v4jf5ak" path="res://Scripts/Quit4.png" id="10_7bbuq"]
 [ext_resource type="Texture2D" uid="uid://bw2ck67q2cetg" path="res://Scripts/Quit2.png" id="11_saq78"]
+[ext_resource type="FontFile" uid="uid://rtkrg4nyretj" path="res://Scripts/PixelatedEleganceRegular-ovawB.ttf" id="16_8u0te"]
+[ext_resource type="Script" uid="uid://03h2uqph5nfi" path="res://label.gd" id="16_g8g3n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
 
@@ -221,6 +223,28 @@ offset_right = 173.0
 offset_bottom = 4.0
 text = "Fullscreen"
 script = ExtResource("6_nlkkf")
+
+[node name="Label" type="Label" parent="." unique_id=1086503850]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.0
+offset_top = -223.0
+offset_right = 243.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9647059, 0.9372549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_8u0te")
+theme_override_font_sizes/font_size = 28
+text = "Pro tip : While in game, press H for help!!!"
+script = ExtResource("16_g8g3n")
 
 [connection signal="pressed" from="MainButtons/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_options_pressed"]
