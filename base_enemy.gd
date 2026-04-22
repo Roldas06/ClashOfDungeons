@@ -1,3 +1,4 @@
+class_name BaseEnemy
 extends CharacterBody2D
 @export var knockback_strength = 500
 @export var speed := 200

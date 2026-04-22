@@ -6,6 +6,7 @@
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=1143731864]
 script = ExtResource("1_vaaym")
+speed = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1321563129]
 shape = SubResource("RectangleShape2D_vaaym")

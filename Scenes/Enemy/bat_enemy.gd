@@ -1,4 +1,4 @@
-extends "res://base_enemy.gd"
+extends BaseEnemy
 
 @onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
 
