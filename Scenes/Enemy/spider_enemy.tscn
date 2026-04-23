@@ -40,10 +40,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2oigq"]
-size = Vector2(6.5, 3)
+size = Vector2(13, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbk52"]
-size = Vector2(16, 9)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2oigq"]
+radius = 7.5
+height = 17.0
 
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
 motion_mode = 1
@@ -58,26 +59,30 @@ frame = 1
 frame_progress = 0.7203479
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1351016407]
-position = Vector2(2, 0)
+position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_2oigq")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1677233158]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1227939319]
 position = Vector2(3, 0.5)
-shape = SubResource("RectangleShape2D_kbk52")
+shape = SubResource("CapsuleShape2D_2oigq")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=217809760]
+visible = false
 target_position = Vector2(10, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=932495638]
+visible = false
 target_position = Vector2(-5, 0)
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="." unique_id=1577386514]
+visible = false
 position = Vector2(-6, 0)
 target_position = Vector2(0, 10)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="." unique_id=11946077]
+visible = false
 position = Vector2(12, 0)
 target_position = Vector2(0, 10)
 

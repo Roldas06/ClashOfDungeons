@@ -14,15 +14,15 @@ const DAMAGE_INTERVAL = 0.8
 
 
 func _process(delta):
-	# Wall collision — flip direction
-	if ray_cast_left.is_colliding():
+
+	if ray_cast_left.is_colliding() and not ray_cast_left.get_collider().is_in_group("player"):
 		direction = 1
 		animated_sprite.flip_h = false
-	elif ray_cast_right.is_colliding():
+	elif ray_cast_right.is_colliding() and not ray_cast_right.get_collider().is_in_group("player"):
 		direction = -1
 		animated_sprite.flip_h = true
 
-	# Edge detection — flip if no ground ahead
+
 	if direction == 1 and not ray_cast_ground_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true

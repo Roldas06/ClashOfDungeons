@@ -98,9 +98,7 @@ func _deal_damage_to_player():
 				body.ApplyKnockback(dir * knockback_strength)
 	
 	if hit_player:
-	
 		damage_cooldown = DAMAGE_INTERVAL
-	
 		var bounce_dir = (global_position - player.global_position).normalized()
 		velocity = bounce_dir * 300 
 
