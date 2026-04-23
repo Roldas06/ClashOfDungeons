@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bwt1myvmweb6"]
+
+[node name="KeyCounter" type="HBoxContainer" unique_id=1431429661]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="KeyIcon" type="TextureRect" parent="." unique_id=1608254617]
+modulate = Color(1, 0.9, 0.2, 1)
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyCount" type="Label" parent="." unique_id=4840902]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+vertical_alignment = 1

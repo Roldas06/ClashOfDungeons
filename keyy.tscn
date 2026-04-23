@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dghnhytxos05r"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1915179379]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="KeyIcon" type="TextureRect" parent="." unique_id=1679812907]
+modulate = Color(1, 0.9, 0.2, 1)
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyCount" type="Label" parent="." unique_id=1308305709]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+vertical_alignment = 1

@@ -35,46 +35,56 @@ animations = [{
 "texture": SubResource("AtlasTexture_b7ou1")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2oigq"]
-size = Vector2(6.5, 3)
+size = Vector2(13, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbk52"]
-size = Vector2(14.5, 9.625)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2oigq"]
+radius = 7.5
+height = 17.0
 
 [node name="SpiderEnemy" type="CharacterBody2D" unique_id=457331688]
 motion_mode = 1
 script = ExtResource("1_2oigq")
 knockback_strength = 200
-speed = 10
+speed = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1109142807]
 sprite_frames = SubResource("SpriteFrames_bd8id")
+animation = &"walk"
 frame = 1
-frame_progress = 0.78310823
+frame_progress = 0.7203479
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1351016407]
-position = Vector2(2, 0)
+position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_2oigq")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1677233158]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1227939319]
-position = Vector2(2.25, 0.8125)
-shape = SubResource("RectangleShape2D_kbk52")
+position = Vector2(3, 0.5)
+shape = SubResource("CapsuleShape2D_2oigq")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=217809760]
+visible = false
 target_position = Vector2(10, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=932495638]
+visible = false
 target_position = Vector2(-5, 0)
 
-[node name="FloorAheadRay" type="RayCast2D" parent="." unique_id=932495639]
-position = Vector2(12, 6)
-target_position = Vector2(0, 32)
+[node name="RayCastDownLeft" type="RayCast2D" parent="." unique_id=1577386514]
+visible = false
+position = Vector2(-6, 0)
+target_position = Vector2(0, 10)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="." unique_id=11946077]
+visible = false
+position = Vector2(12, 0)
+target_position = Vector2(0, 10)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

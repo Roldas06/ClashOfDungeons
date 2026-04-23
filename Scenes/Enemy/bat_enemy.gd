@@ -1,4 +1,4 @@
-extends "res://base_enemy.gd"
+extends BaseEnemy
 
 @onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
 
@@ -22,13 +22,15 @@ func _process(delta):
 	move(delta)
 	if hp <= 0:
 		return
-	if player_inside and damage_cooldown <= 0.0:
-		_deal_damage_to_player()
-		damage_cooldown = DAMAGE_INTERVAL
-	elif damage_cooldown > 0.0:
+		
+
+	if damage_cooldown > 0.0:
 		damage_cooldown -= delta
 	
-	var animated_sprite = $AnimatedSprite2D
+
+	if player_inside and damage_cooldown <= 0.0:
+		_deal_damage_to_player()
+	
 	handle_animation()
 	
 func _on_timer_timeout() -> void:
@@ -84,30 +86,27 @@ func on_death():
 		
 func _deal_damage_to_player():
 	var area = $Area2D
-	var hit_something = false
-	for body in area.get_overlapping_bodies():
-		if body.has_method("TakeDamage"):
-			body.TakeDamage(8)
-			hit_something = true
-			if body.has_method("ApplyKnockback"):
-				var delta_vec = body.global_position - global_position
-				var dir = delta_vec.normalized()
-			
-				
-				dir.y = 0
-				if dir.x == 0:
-					dir.x = 1.0  
-				dir = dir.normalized()
-				body.ApplyKnockback(dir * knockback_strength)
-	if hit_something:
-		var bounce_dir = (global_position - player.global_position).normalized()
-		velocity = bounce_dir * 200
-func _on_area_2d_body_entered(body: Node2D) -> void:
+	var hit_player = false
 	
-	if body.has_method("TakeDamage"):
+	for body in area.get_overlapping_bodies():
+		if body.has_method("TakeDamage") and body.is_in_group("player"):
+			body.TakeDamage(8)
+			hit_player = true
+			if body.has_method("ApplyKnockback"):
+				var dir = (body.global_position - global_position).normalized()
+				dir.y = -0.1 
+				body.ApplyKnockback(dir * knockback_strength)
+	
+	if hit_player:
+		damage_cooldown = DAMAGE_INTERVAL
+		var bounce_dir = (global_position - player.global_position).normalized()
+		velocity = bounce_dir * 300 
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
 		player_inside = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.has_method("TakeDamage"):
+	if body.is_in_group("player"):
 		player_inside = false
-		damage_cooldown = 0.0
+	

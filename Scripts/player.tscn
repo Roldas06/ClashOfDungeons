@@ -28,6 +28,8 @@ var jump_count = 0
 var maxHealthPoints = 40
 var currentHealthPoints: int = maxHealthPoints
 signal healthChanged
+func _ready():
+	add_to_group(\"players\")
 # --- DASH VARIABLES ---
 var can_dash := true
 var dash_speed := 600.0
@@ -145,8 +147,8 @@ func _start_dash():
 	is_dashing = false
 	set_collision_layer_value(1, true)
 
-	await get_tree().create_timer(dash_cooldown).timeout
-	can_dash = true
+	$DashCooldown.start()
+	
 
 # --- ATTACK FUNCTIONS ---
 func _attack():
@@ -200,6 +202,8 @@ func shoot():
 func _on_projectile_cooldown_timeout() -> void:
 	can_shoot = true
 
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
@@ -375,7 +379,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_d36ei"]
-resource_name = "death"
+resource_name = "Dead"
 length = 2.25
 step = 0.25
 tracks/0/type = "value"
@@ -565,8 +569,13 @@ monitoring = false
 shape = SubResource("RectangleShape2D_e30d2")
 
 [node name="ProjectileCooldown" type="Timer" parent="." unique_id=5336929]
-wait_time = 0.5
+wait_time = 2.0
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=1836155499]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="ProjectileCooldown" to="." method="_on_projectile_cooldown_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
