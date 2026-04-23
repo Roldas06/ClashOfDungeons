@@ -147,8 +147,8 @@ func _start_dash():
 	is_dashing = false
 	set_collision_layer_value(1, true)
 
-	await get_tree().create_timer(dash_cooldown).timeout
-	can_dash = true
+	$DashCooldown.start()
+	
 
 # --- ATTACK FUNCTIONS ---
 func _attack():
@@ -202,6 +202,8 @@ func shoot():
 func _on_projectile_cooldown_timeout() -> void:
 	can_shoot = true
 
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
@@ -240,35 +242,6 @@ func Death():
 	print(\"GAME OVER!\")
 	get_tree().call_deferred(\"change_scene_to_file\", \"res://main_menu.tscn\")
 "
-
-[sub_resource type="Animation" id="Animation_d36ei"]
-resource_name = "Dead"
-length = 2.25
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimator/Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_a6hnc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Rect2(776, 60, 24, 20), Rect2(920, 60, 24, 20), Rect2(1064, 60, 24, 20), Rect2(1208, 60, 24, 20), Rect2(1352, 60, 24, 20), Rect2(1494, 60, 31, 20), Rect2(1633, 60, 35, 20), Rect2(1784, 60, 29.11, 20), Rect2(2063.471, 60, 37.397, 20), Rect2(2209.094, 60, 39.711, 20)]
-}
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
 resource_name = "Idle"
@@ -405,6 +378,35 @@ tracks/1/keys = {
 "values": [Rect2(343, 60, 27, 20), Rect2(486, 60, 28, 20), Rect2(515.735, 60, 28, 20), Rect2(1207, 60, 27, 20), Rect2(1351, 60, 27, 20)]
 }
 
+[sub_resource type="Animation" id="Animation_d36ei"]
+resource_name = "Dead"
+length = 2.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_a6hnc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(776, 60, 24, 20), Rect2(920, 60, 24, 20), Rect2(1064, 60, 24, 20), Rect2(1208, 60, 24, 20), Rect2(1352, 60, 24, 20), Rect2(1494, 60, 31, 20), Rect2(1633, 60, 35, 20), Rect2(1784, 60, 29.11, 20), Rect2(2063.471, 60, 37.397, 20), Rect2(2209.094, 60, 39.711, 20)]
+}
+
 [sub_resource type="Animation" id="Animation_sweqy"]
 resource_name = "fall"
 length = 0.75
@@ -497,11 +499,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sweqy"]
 _data = {
-&"Dead": SubResource("Animation_d36ei"),
 &"Idle": SubResource("Animation_i3pqv"),
 &"RESET": SubResource("Animation_hqtel"),
 &"attack1": SubResource("Animation_dewun"),
 &"dash": SubResource("Animation_e30d2"),
+&"death": SubResource("Animation_d36ei"),
 &"fall": SubResource("Animation_sweqy"),
 &"jump": SubResource("Animation_2hs0m"),
 &"move": SubResource("Animation_1jxqw")
@@ -567,8 +569,13 @@ monitoring = false
 shape = SubResource("RectangleShape2D_e30d2")
 
 [node name="ProjectileCooldown" type="Timer" parent="." unique_id=5336929]
-wait_time = 0.5
+wait_time = 2.0
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="." unique_id=1836155499]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="ProjectileCooldown" to="." method="_on_projectile_cooldown_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
