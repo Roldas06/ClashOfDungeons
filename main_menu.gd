@@ -73,7 +73,10 @@ func _on_button_options_pressed() -> void:
 	options.visible = true
 
 func _on_button_quit_pressed() -> void:
+	if FileAccess.file_exists("user://save.dat"):
+		DirAccess.remove_absolute("user://save.dat")
 	get_tree().quit()
+
 
 func _on_back_options_pressed() -> void:
 	_ready()
