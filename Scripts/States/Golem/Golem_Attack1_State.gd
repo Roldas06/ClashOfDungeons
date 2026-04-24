@@ -7,6 +7,8 @@ func enter():
 	super.enter()
 	can_transition = false
 	animation_player.play("Attack_1")
+	await get_tree().create_timer(0.7).timeout 
+	owner.spawn_shockwave()
 	await animation_player.animation_finished
 	can_transition = true
 	owner.reset_attack_state()

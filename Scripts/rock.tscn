@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dki8l5qpw2jrv"]
+
+[ext_resource type="Script" uid="uid://bkt7ptjah2asa" path="res://Scripts/rock.gd" id="1_cbt5b"]
+[ext_resource type="Texture2D" uid="uid://m2lro2fksqhi" path="res://assets/oak_woods_v1.0/Golem/Attack/Golem Attack + Skill-Sheet.png" id="1_mg785"]
+
+[sub_resource type="Animation" id="Animation_cbt5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_mg785")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(978, 43, 43, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.63749987)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_js5qv"]
+resource_name = "RockAttack"
+length = 0.90813524
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_mg785")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(978, 43, 43, 24), Rect2(1138, 42, 43, 25), Rect2(1298, 22, 44, 45), Rect2(1458, 22, 44, 45), Rect2(1618, 22, 44, 45), Rect2(1778, 23, 44, 44), Rect2(1938, 24, 44, 43), Rect2(2098, 32, 44, 35), Rect2(2266, 40, 29, 27), Rect2(2427, 56, 9, 11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4.7683716e-07)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.035, 1.885), Vector2(1.035, 1.885), Vector2(1.035, 1.48), Vector2(0.71, 1.24), Vector2(0.205, 0.51)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ir8w"]
+_data = {
+&"RESET": SubResource("Animation_cbt5b"),
+&"RockAttack": SubResource("Animation_js5qv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4uhc"]
+size = Vector2(42.92683, 24)
+
+[node name="Rock" type="Area2D" unique_id=688687701]
+script = ExtResource("1_cbt5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=990087094]
+texture = ExtResource("1_mg785")
+region_enabled = true
+region_rect = Rect2(978, 43, 43, 24)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1296945187]
+libraries/ = SubResource("AnimationLibrary_2ir8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1238912715]
+position = Vector2(0.5, 0.63749987)
+shape = SubResource("RectangleShape2D_f4uhc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

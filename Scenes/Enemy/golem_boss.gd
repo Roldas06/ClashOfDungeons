@@ -8,6 +8,9 @@ extends CharacterBody2D
 @onready var ray_cast_left = $RayCast/RayCastLeft
 @onready var attack_area_1 = $AttackArea2D_1
 #@onready var attack_area_2 = $AttackArea2D_2
+@export var rock_scene: PackedScene
+@export var ranged_attack_range : float = 170.0
+@export var shockwave_scene: PackedScene
 #@onready var attack_area_3 = $AttackArea2D_3
 
 var player: CharacterBody2D
@@ -17,12 +20,13 @@ var is_close_to_player_1 = false
 var is_close_to_player_2 = false
 var is_close_to_player_3 = false
 var direction = Vector2.RIGHT
+var is_attacking = false
 var is_dead = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")	
 
 @export var change_direction : float = 4.0
 @export var stop_distance : float = 8.0
-@export var attack_range : float = 35.0
+@export var attack_range : float = 110.0
 @export var damage_dealt : int = 1
 @export var move_speed = 28
 @export var chase_speed = 60
@@ -55,8 +59,13 @@ func _physics_process(delta):
 	if is_player_in_range == false:
 		check_wall_collision()
 
-	if distance_to_player <= attack_range and mandatory_idle_active == false:
-		start_attack_animation()
+	if distance_to_player <= attack_range and mandatory_idle_active == false and not is_attacking:
+		is_attacking = true
+		is_close_to_player_1 = true
+
+	if distance_to_player > 150.0 and distance_to_player <= ranged_attack_range and mandatory_idle_active == false and not is_attacking:
+		is_attacking = true
+		is_close_to_player_2 = true
 
 	if is_player_in_range and ray_cast_right.is_colliding() and direction == Vector2.RIGHT:
 		mandatory_transition()
@@ -104,13 +113,19 @@ func check_wall_collision():
 		sprite_2d.flip_h = false
 
 func start_attack_animation():
+	is_attacking = true
+	var distance = global_position.distance_to(player.global_position)
+	if distance <= attack_range:
 		is_close_to_player_1 = true
+	else:
+		is_close_to_player_2 = true
 
 
 func reset_attack_state():
 	is_close_to_player_1 = false
 	is_close_to_player_2 = false
 	is_close_to_player_3 = false
+	is_attacking = false  
 
 func _on_player_detected(body):
 	print("Kas įėjo: ", body.name)
@@ -125,11 +140,11 @@ func _on_player_lost(body):
 
 func _on_attack1_entered(body):
 	if body.is_in_group("players"):
-		body.take_damage(damage_dealt)
+		body.TakeDamage(damage_dealt)
 
 func _on_attack2_entered(body):
 	if body.is_in_group("players"):
-		body.take_damage(damage_dealt * 0.7)
+		body.TakeDamage(damage_dealt * 0.7)
 
 func _on_attack3_entered(body):
 	if body.is_in_group("players"):
@@ -142,11 +157,8 @@ func take_damage(damage):
 	health -= damage
 	print(health)
 
-	var knockback_direction = (global_position - player.global_position).normalized()
-	apply_knockback(Vector2(
-		knockback_force.x * knockback_direction.x,
-		knockback_force.y
-	))
+	var knockback_direction = (player.global_position - global_position).normalized()
+	player.ApplyKnockback(knockback_direction * 400)  # ← tiesiogiai ant playerio
 
 	if health <= 0:
 		die()
@@ -154,9 +166,14 @@ func take_damage(damage):
 		finite_state_machine.change_state("Hurt State")
 
 func apply_knockback(force: Vector2):
-	pass
+	player.ApplyKnockback(force)
 
-
+func spawn_shockwave():
+	var shockwave = shockwave_scene.instantiate()
+	get_parent().add_child(shockwave)
+	shockwave.global_position = global_position
+	
 func die():
 	is_dead = true
+	set_physics_process(false)
 	finite_state_machine.change_state("Dead State")

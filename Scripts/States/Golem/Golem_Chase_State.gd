@@ -17,7 +17,9 @@ func enter():
 
 func transition():
 	if can_transition:
-		if owner.is_close_to_player_1:
+		if owner.is_close_to_player_2:
+			get_parent().change_state("Attack2 State")
+		elif owner.is_close_to_player_1:
 			get_parent().change_state("Attack1 State")
 		elif owner.mandatory_idle_active and (ray_cast_left.is_colliding() or ray_cast_right.is_colliding()):
 			get_parent().change_state("Mandatory Idle State")

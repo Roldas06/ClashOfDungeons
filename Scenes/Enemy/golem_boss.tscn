@@ -3,7 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://5cwxja78wjwt" path="res://assets/oak_woods_v1.0/Golem/Idle/Golem Idle-Sheet.png" id="1_8ie7t"]
 [ext_resource type="Script" uid="uid://ttoyl34y5yj1" path="res://Scenes/Enemy/golem_boss.gd" id="1_derup"]
 [ext_resource type="Texture2D" uid="uid://bou84wyhcre64" path="res://assets/oak_woods_v1.0/Golem/Attack/Golem Attack-Sheet.png" id="2_nl26f"]
+[ext_resource type="PackedScene" uid="uid://dki8l5qpw2jrv" path="res://Scripts/rock.tscn" id="2_ouu71"]
 [ext_resource type="Texture2D" uid="uid://dmd24f5d8pa35" path="res://assets/oak_woods_v1.0/Golem/Death/Golem Death-Sheet.png" id="3_7k0r8"]
+[ext_resource type="PackedScene" uid="uid://dbbpyuna4c5k2" path="res://Scripts/shock_wave.tscn" id="3_gguom"]
+[ext_resource type="Texture2D" uid="uid://m2lro2fksqhi" path="res://assets/oak_woods_v1.0/Golem/Attack/Golem Attack + Skill-Sheet.png" id="4_derup"]
 [ext_resource type="Texture2D" uid="uid://dq5lqo521onbv" path="res://assets/oak_woods_v1.0/Golem/Hit/Golem Hit-Sheet.png" id="4_kkxid"]
 [ext_resource type="Texture2D" uid="uid://dg5v1my3k4sdu" path="res://assets/oak_woods_v1.0/Golem/Move/Golem Move-Sheet.png" id="5_c1p8y"]
 [ext_resource type="Script" uid="uid://b2w5ojw2hkawv" path="res://Scenes/Enemy/finite_state_machine.gd" id="6_nl26f"]
@@ -13,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b63hlh5lrrtcm" path="res://Scripts/States/Golem/Golem_Chase_State.gd" id="11_derup"]
 [ext_resource type="Script" uid="uid://duod2fbfgblfj" path="res://Scripts/States/Golem/Golem_Attack1_State.gd" id="12_derup"]
 [ext_resource type="Script" uid="uid://cwpd2mblrupbi" path="res://Scripts/States/Golem/Golem_Hurt_State.gd" id="14_derup"]
+[ext_resource type="Script" uid="uid://dunsbwhdwedfo" path="res://Scripts/States/Golem/Golem_Attack2_State.gd" id="14_pyq8p"]
 [ext_resource type="Script" uid="uid://bslrtyi551q42" path="res://Scripts/States/Golem/Golem_Dead_State.gd" id="15_derup"]
 [ext_resource type="Script" uid="uid://srqxonk8bhv0" path="res://Scripts/States/Golem/Golem_Mandatory_Idle_State.gd" id="16_derup"]
 
@@ -55,6 +59,47 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_gguom"]
+resource_name = "Attack_2"
+length = 0.9069389
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_derup")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(94, 12, 52, 55), Rect2(254, 13, 52, 54), Rect2(414, 14, 52, 53), Rect2(574, 5, 52, 62), Rect2(734, 4, 52, 63), Rect2(887, 12, 54, 55), Rect2(1047, 17, 54, 50), Rect2(1207, 16, 54, 51), Rect2(1367, 16, 54, 51), Rect2(1527, 16, 54, 51)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3.52), Vector2(0, -3.96), Vector2(0, -0.775), Vector2(0, 1.31), Vector2(0, 1.31), Vector2(0, 1.31), Vector2(0, 1.31)]
 }
 
 [sub_resource type="Animation" id="Animation_knx0e"]
@@ -343,6 +388,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_derup"]
 _data = {
 &"Attack_1": SubResource("Animation_2jy0y"),
+&"Attack_2": SubResource("Animation_gguom"),
 &"Chase": SubResource("Animation_knx0e"),
 &"Dead": SubResource("Animation_wvidr"),
 &"Hurt": SubResource("Animation_3ijhy"),
@@ -362,11 +408,14 @@ radius = 50.0
 height = 400.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pyq8p"]
-size = Vector2(60, 58)
+size = Vector2(103, 71)
 
 [node name="Golem boss" type="CharacterBody2D" unique_id=1981538001]
 collision_layer = 3
 script = ExtResource("1_derup")
+rock_scene = ExtResource("2_ouu71")
+shockwave_scene = ExtResource("3_gguom")
+attack_range = 60.0
 damage_dealt = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=925905379]
@@ -389,6 +438,7 @@ offset_right = 20.0
 offset_bottom = -34.0
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=655488201]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=973012040]
@@ -425,6 +475,11 @@ script = ExtResource("11_derup")
 
 [node name="Attack1 State" type="Node2D" parent="FiniteStateMachine" unique_id=42983979]
 script = ExtResource("12_derup")
+can_move = false
+
+[node name="Attack2 State" type="Node2D" parent="FiniteStateMachine" unique_id=1671806099]
+script = ExtResource("14_pyq8p")
+can_move = false
 
 [node name="Hurt State" type="Node2D" parent="FiniteStateMachine" unique_id=404431282]
 script = ExtResource("14_derup")
@@ -436,13 +491,10 @@ script = ExtResource("15_derup")
 script = ExtResource("16_derup")
 
 [node name="AttackArea2D_1" type="Area2D" parent="." unique_id=757390187]
-visible = false
 collision_layer = 0
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D_1" unique_id=161066030]
-visible = false
-position = Vector2(-1, -2)
+position = Vector2(-3.5, -4.5)
 shape = SubResource("RectangleShape2D_pyq8p")
 disabled = true
 
