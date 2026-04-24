@@ -36,13 +36,13 @@ func _ready() -> void:
 	if level2_unlocked:
 		levels_popup.add_item("Level 2")
 	else:
-		levels_popup.add_item("Level 2 (Užrakinta)")
+		levels_popup.add_item("Level 2 (Locked)")
 		levels_popup.set_item_disabled(1, true)
 	
 	if level3_unlocked:
 		levels_popup.add_item("Level 3")
 	else:
-		levels_popup.add_item("Level 3 (Užrakinta)")
+		levels_popup.add_item("Level 3 (Locked)")
 		levels_popup.set_item_disabled(2, true)
 
 func _on_levels_button_pressed() -> void:
