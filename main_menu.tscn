@@ -81,6 +81,7 @@ scale = Vector2(1.2879801, 1.2857813)
 texture = ExtResource("2_7vrkn")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1957560105]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,7 +129,6 @@ autoplay = true
 bus = &"Music"
 
 [node name="Options" type="Panel" parent="." unique_id=1383629830]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296
@@ -224,6 +224,14 @@ offset_bottom = 4.0
 text = "Fullscreen"
 script = ExtResource("6_nlkkf")
 
+[node name="LevelsButton" type="Button" parent="Options" unique_id=736161981]
+layout_mode = 0
+offset_left = 215.0
+offset_top = -167.0
+offset_right = 407.0
+offset_bottom = -122.0
+text = "LEVELS"
+
 [node name="Label" type="Label" parent="." unique_id=1086503850]
 layout_mode = 1
 anchors_preset = 8
@@ -246,6 +254,11 @@ theme_override_font_sizes/font_size = 28
 text = "Pro tip : While in game, press H for help!!!"
 script = ExtResource("16_g8g3n")
 
+[node name="LevelsPopup" type="PopupMenu" parent="." unique_id=1454203501]
+item_count = 2
+item_0/id = 0
+item_1/id = 1
+
 [connection signal="pressed" from="MainButtons/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainButtons/Button3" to="." method="_on_button_quit_pressed"]
@@ -253,3 +266,5 @@ script = ExtResource("16_g8g3n")
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/SfxControl" to="Options/SfxControl" method="_on_value_changed"]
 [connection signal="toggled" from="Options/FullScreenControl" to="." method="_on_full_screen_control_toggled"]
+[connection signal="pressed" from="Options/LevelsButton" to="." method="_on_levels_button_pressed"]
+[connection signal="index_pressed" from="LevelsPopup" to="." method="_on_levels_popup_index_pressed"]
