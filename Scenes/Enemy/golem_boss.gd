@@ -141,6 +141,8 @@ func _on_player_lost(body):
 func _on_attack1_entered(body):
 	if body.is_in_group("players"):
 		body.TakeDamage(damage_dealt)
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.ApplyKnockback(knockback_dir * 800) 
 
 func _on_attack2_entered(body):
 	if body.is_in_group("players"):

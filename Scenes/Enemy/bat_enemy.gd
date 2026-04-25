@@ -95,7 +95,7 @@ func _deal_damage_to_player():
 			if body.has_method("ApplyKnockback"):
 				var dir = (body.global_position - global_position).normalized()
 				dir.y = -0.1 
-				body.ApplyKnockback(dir * knockback_strength)
+				body.ApplyKnockback(dir * 150)
 	
 	if hit_player:
 		damage_cooldown = DAMAGE_INTERVAL
