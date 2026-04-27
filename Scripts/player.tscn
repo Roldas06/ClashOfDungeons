@@ -35,7 +35,7 @@ func _ready():
 var can_dash := true
 var dash_speed := 600.0
 var dash_duration := 0.15
-var dash_cooldown := 0.8
+var dash_cooldown := 0.0
 var is_dashing := false
 # --- LAVA DAMAGE VARIABLES ---
 var lava_damage_interval = 0.5
@@ -62,6 +62,8 @@ var stamina_recovery := 20.0
 var collected_keys := 0
 
 func _physics_process(delta: float) -> void:
+	dash_cooldown = $DashCooldown.time_left
+	
 	if knockback_timer > 0:
 		knockback_timer -= delta
 		move_and_slide()
