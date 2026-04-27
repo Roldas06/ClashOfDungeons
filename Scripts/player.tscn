@@ -52,6 +52,7 @@ var attack_cooldown := 0.4
 # --- PROJECTILE VARIABLES ---
 var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
 var can_shoot := true
+var projectile_cooldown := 0.0
 # --- BLOCKING VARIABLES ---
 var is_blocking := false
 var stamina := 100.0
@@ -63,6 +64,7 @@ var collected_keys := 0
 
 func _physics_process(delta: float) -> void:
 	dash_cooldown = $DashCooldown.time_left
+	projectile_cooldown = $ProjectileCooldown.time_left
 	
 	if knockback_timer > 0:
 		knockback_timer -= delta
