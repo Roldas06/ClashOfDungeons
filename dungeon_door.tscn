@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dx723eineutpv"]
+
+[ext_resource type="Texture2D" uid="uid://oplt6mjjbd4y" path="res://assets/!Demon Door.png" id="1_kwpdp"]
+
+[sub_resource type="GDScript" id="GDScript_6xp6t"]
+resource_name = "DungeonDoorScript"
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		if body.collected_keys == 1:
+			$AnimatedSprite2D.play(\"opening\")
+			body.unlocked_levels += 1
+		
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsgpg"]
+atlas = ExtResource("1_kwpdp")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfc7m"]
+atlas = ExtResource("1_kwpdp")
+region = Rect2(0, 240, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpiw4"]
+atlas = ExtResource("1_kwpdp")
+region = Rect2(0, 480, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq3cw"]
+atlas = ExtResource("1_kwpdp")
+region = Rect2(0, 720, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s32ns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsgpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfc7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpiw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq3cw")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwpdp"]
+size = Vector2(67, 60.5)
+
+[node name="DungeonDoor" type="Node2D" unique_id=1003512301]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1951777355]
+script = SubResource("GDScript_6xp6t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1870852743]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_s32ns")
+animation = &"opening"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2099875463]
+position = Vector2(-0.5, -17.25)
+shape = SubResource("RectangleShape2D_kwpdp")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
