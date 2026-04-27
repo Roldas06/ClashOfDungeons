@@ -1,13 +1,16 @@
 extends Area2D
 
 @export var speed := 150.0
-@export var damage := 10
+
 
 var direction := Vector2.ZERO
 var projectile_owner = null
 var has_hit := false
+var damage
 
 func _ready() -> void:
+	damage = GameManager.projectile_damage
+	
 	rotation = direction.angle()
 	
 	$AnimatedSprite2D.play("default")

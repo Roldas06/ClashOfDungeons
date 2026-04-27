@@ -10,7 +10,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == \"Player\":
 		if body.collected_keys == 1:
 			$AnimatedSprite2D.play(\"opening\")
-			body.unlocked_levels += 1
+			GameManager.unlocked_levels = 2
+			SaveGame.save_game()
+			
+			
 		
 "
 
@@ -62,8 +65,6 @@ script = SubResource("GDScript_6xp6t")
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_s32ns")
 animation = &"opening"
-frame = 3
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2099875463]
 position = Vector2(-0.5, -17.25)

@@ -25,12 +25,10 @@ var speed_multiplier = 30.0
 var jump_multiplier = -30.0
 var direction = 0
 var jump_count = 0
-var maxHealthPoints = 40
-var currentHealthPoints: int = maxHealthPoints
+var maxHealthPoints
+var currentHealthPoints
 signal healthChanged
 var knockback_timer := 0.0
-func _ready():
-	add_to_group(\"players\")
 # --- DASH VARIABLES ---
 var can_dash := true
 var dash_speed := 600.0
@@ -49,10 +47,12 @@ var lava_horizontal_drag = 0.85
 var can_attack := true
 var is_attacking := false
 var attack_cooldown := 0.4
+var attack_damage
 # --- PROJECTILE VARIABLES ---
 var projectile_scene = preload(\"res://Scenes/projectile.tscn\")
 var can_shoot := true
 var projectile_cooldown := 0.0
+var projectile_damage := 10
 # --- BLOCKING VARIABLES ---
 var is_blocking := false
 var stamina := 100.0
@@ -61,8 +61,15 @@ var stamina_drain := 30.0
 var stamina_recovery := 20.0
 # --- COLLECTED KEY VARIABLES ---
 var collected_keys := 0
-var unlocked_levels := 1
+var unlocked_levels
 
+func _ready():
+	add_to_group(\"players\")
+	maxHealthPoints = GameManager.maxHealthPoints
+	attack_damage = GameManager.attack_damage
+	unlocked_levels = GameManager.unlocked_levels
+	currentHealthPoints = GameManager.maxHealthPoints
+	
 func _physics_process(delta: float) -> void:
 	dash_cooldown = $DashCooldown.time_left
 	projectile_cooldown = $ProjectileCooldown.time_left
@@ -186,7 +193,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
 	if body.has_method(\"take_damage\"):
-		body.take_damage(10)
+		body.take_damage(attack_damage)
 
 # --- LAVA DAMAGE ---
 func _handle_lava_damage(delta: float) -> void:

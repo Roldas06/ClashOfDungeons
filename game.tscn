@@ -2302,7 +2302,7 @@ position = Vector2(1775, -333)
 [node name="Enemies" type="Node" parent="." unique_id=1031763891]
 
 [node name="BatEnemy" parent="Enemies" unique_id=1393629977 instance=ExtResource("29_bnpwn")]
-position = Vector2(1764, 15)
+position = Vector2(1708, -1049)
 
 [node name="sfx_damage" type="AudioStreamPlayer2D" parent="Enemies/BatEnemy" unique_id=1186431588]
 position = Vector2(-6, 3)
