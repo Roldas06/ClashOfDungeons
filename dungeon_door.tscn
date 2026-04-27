@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == \"Player\":
 		if body.collected_keys == 1:
 			$AnimatedSprite2D.play(\"opening\")
-			GameManager.unlocked_levels = 2
+			Global.unlocked_levels = 2
 			SaveGame.save_game()
 			
 			

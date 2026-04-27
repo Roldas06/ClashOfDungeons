@@ -65,10 +65,10 @@ var unlocked_levels
 
 func _ready():
 	add_to_group(\"players\")
-	maxHealthPoints = GameManager.maxHealthPoints
-	attack_damage = GameManager.attack_damage
-	unlocked_levels = GameManager.unlocked_levels
-	currentHealthPoints = GameManager.maxHealthPoints
+	maxHealthPoints = Global.maxHealthPoints
+	attack_damage = Global.attack_damage
+	unlocked_levels = Global.unlocked_levels
+	currentHealthPoints = Global.maxHealthPoints
 	
 func _physics_process(delta: float) -> void:
 	dash_cooldown = $DashCooldown.time_left

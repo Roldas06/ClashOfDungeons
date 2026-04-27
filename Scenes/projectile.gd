@@ -9,7 +9,7 @@ var has_hit := false
 var damage
 
 func _ready() -> void:
-	damage = GameManager.projectile_damage
+	damage = Global.projectile_damage
 	
 	rotation = direction.angle()
 	

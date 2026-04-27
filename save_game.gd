@@ -2,10 +2,10 @@ extends Node
 
 func save_game():
 	var save_data = {
-		"unlocked_levels": GameManager.unlocked_levels,
-		"maxHealthPoints": GameManager.maxHealthPoints,
-		"attack_damage": GameManager.attack_damage,
-		"projectile_damage": GameManager.projectile_damage
+		"unlocked_levels": Global.unlocked_levels,
+		"maxHealthPoints": Global.maxHealthPoints,
+		"attack_damage": Global.attack_damage,
+		"projectile_damage": Global.projectile_damage
 	}
 	
 	var file = FileAccess.open("user://save_game.json", FileAccess.WRITE)
@@ -28,8 +28,8 @@ func load_game():
 	var data = JSON.parse_string(file.get_as_text())
 	file.close()
 	
-	GameManager.unlocked_levels = data["unlocked_levels"]
-	GameManager.maxHealthPoints = data["maxHealthPoints"]
-	GameManager.attack_damage = data["attack_damage"]
-	GameManager.projectile_damage = data["projectile_damage"]
+	Global.unlocked_levels = data["unlocked_levels"]
+	Global.maxHealthPoints = data["maxHealthPoints"]
+	Global.attack_damage = data["attack_damage"]
+	Global.projectile_damage = data["projectile_damage"]
 	print("game loaded")
