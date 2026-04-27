@@ -13,8 +13,9 @@ func _on_body_entered(body: Node2D) -> void:
 			Global.unlocked_levels = 2
 			SaveGame.save_game()
 			
-			
-		
+			#Teleportation to boss room
+			await get_tree().create_timer(1.0).timeout
+			body.global_position = Vector2(1600, -930)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rsgpg"]
