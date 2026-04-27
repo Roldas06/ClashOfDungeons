@@ -1872,7 +1872,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(-649, -16)
+position = Vector2(1786, 5)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(1, -9)
@@ -2096,7 +2096,7 @@ tile_set = SubResource("TileSet_j5wjh")
 
 [node name="LayerBelow" type="TileMapLayer" parent="TileMap" unique_id=1879462125]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAOAAIAAAAPAAEAAAANAAIAAAAPAAEAAAAQAAMAAAAPAAEAAAAPAAMAAAAPAAEAAAAOAAMAAAAPAAEAAAATAAQAAAAPAAEAAAASAAQAAAAPAAEAAAD8/wEAAAAPAAEAAAD7/wEAAAAPAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAbAAQAAAAPAAEAAAAaAAQAAAAPAAEAAAAZAAQAAAAPAAEAAAAYAAQAAAAPAAEAAAAXAAQAAAAPAAEAAAAXAAMAAAAPAAEAAAAYAAMAAAAPAAEAAAAZAAMAAAAPAAEAAAAaAAMAAAAPAAEAAAAbAAMAAAAPAAEAAAAWAAIAAAAPAAAAAAAXAAIAAAAQAAAAAAAYAAIAAAAPAAAAAAAZAAIAAAAQAAAAAAAaAAIAAAAPAAAAAAAbAAIAAAAPAAAAAAAcAAIAAAAQAAAAAAApAPj/AAABAAEAAAAmAP//AAABAAEAAAAnAP//AAABAAEAAAApAPr/AAABAAEAAAAoAPv/AAABAAEAAAApAPv/AAABAAEAAAACAPv/AQAAAAAAAAACAPz/AQAAAAEAAAACAP3/AQAAAAIAAAACAP7/AQAAAAMAAAADAPv/AQABAAAAAAADAPz/AQABAAEAAAADAP3/AQABAAIAAAADAP7/AQABAAMAAAAEAPv/AQACAAAAAAAEAPz/AQACAAEAAAAEAP3/AQACAAIAAAAEAP7/AQACAAMAAAAFAPv/AQADAAAAAAAFAPz/AQADAAEAAAAFAP3/AQADAAIAAAAFAP7/AQADAAMAAAA=")
+tile_map_data = PackedByteArray("AAAOAAIAAAAPAAEAAAANAAIAAAAPAAEAAAAQAAMAAAAPAAEAAAAPAAMAAAAPAAEAAAAOAAMAAAAPAAEAAAATAAQAAAAPAAEAAAASAAQAAAAPAAEAAAD8/wEAAAAPAAEAAAD7/wEAAAAPAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAbAAQAAAAPAAEAAAAaAAQAAAAPAAEAAAAZAAQAAAAPAAEAAAAYAAQAAAAPAAEAAAAXAAQAAAAPAAEAAAAXAAMAAAAPAAEAAAAYAAMAAAAPAAEAAAAZAAMAAAAPAAEAAAAaAAMAAAAPAAEAAAAbAAMAAAAPAAEAAAAWAAIAAAAPAAAAAAAXAAIAAAAQAAAAAAAYAAIAAAAPAAAAAAAZAAIAAAAQAAAAAAAaAAIAAAAPAAAAAAAbAAIAAAAPAAAAAAAcAAIAAAAQAAAAAAApAPj/AAABAAEAAAAmAP//AAABAAEAAAAnAP//AAABAAEAAAApAPr/AAABAAEAAAAoAPv/AAABAAEAAAApAPv/AAABAAEAAAACAPv/AQAAAAAAAAACAPz/AQAAAAEAAAACAP3/AQAAAAIAAAACAP7/AQAAAAMAAAADAPv/AQABAAAAAAADAPz/AQABAAEAAAADAP3/AQABAAIAAAADAP7/AQABAAMAAAAEAPv/AQACAAAAAAAEAPz/AQACAAEAAAAEAP3/AQACAAIAAAAEAP7/AQACAAMAAAAFAPv/AQADAAAAAAAFAPz/AQADAAEAAAAFAP3/AQADAAIAAAAFAP7/AQADAAMAAADs////AAASAAwAAADs/wAAAAASAAwAAADt/wAAAAASAAwAAADr/wAAAAASAAwAAADq/wAAAAASAAwAAADp/wAAAAASAAwAAADr////AAASAAwAAAA=")
 tile_set = SubResource("TileSet_hve3p")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMap" unique_id=1507009196]
@@ -2260,13 +2260,13 @@ position = Vector2(233, 147)
 drop_chance = 0.5
 
 [node name="FallingRock2" parent="Traps" unique_id=14373605 instance=ExtResource("24_frock")]
-position = Vector2(1920, -29)
+position = Vector2(1921, -21)
 
 [node name="FallingRock3" parent="Traps" unique_id=2082380365 instance=ExtResource("24_frock")]
-position = Vector2(2010, -44)
+position = Vector2(2007, -39)
 
 [node name="FallingRock4" parent="Traps" unique_id=177860798 instance=ExtResource("24_frock")]
-position = Vector2(1840, -12)
+position = Vector2(1843, -6)
 
 [node name="Platform" parent="Traps" unique_id=1247035719 instance=ExtResource("9_e36ub")]
 position = Vector2(-172, -45)
@@ -2282,10 +2282,10 @@ position = Vector2(2497, -117)
 position = Vector2(2680, -114)
 
 [node name="FallingRock6" parent="Traps" unique_id=2023421462 instance=ExtResource("24_frock")]
-position = Vector2(2481, -204)
+position = Vector2(2484, -199)
 
 [node name="FallingRock7" parent="Traps" unique_id=617637772 instance=ExtResource("24_frock")]
-position = Vector2(2621, -206)
+position = Vector2(2621, -197)
 
 [node name="FallingRock8" parent="Traps" unique_id=2054462713 instance=ExtResource("24_frock")]
 position = Vector2(2600, -369)
@@ -2309,21 +2309,24 @@ position = Vector2(-6, 3)
 stream = ExtResource("4_xfvwf")
 bus = &"SFX"
 
-[node name="SpiderEnemy2" parent="Enemies" unique_id=653517658 instance=ExtResource("21_f1jbl")]
-position = Vector2(2555, -196)
-
-[node name="SpiderEnemy5" parent="Enemies" unique_id=1523794922 instance=ExtResource("21_f1jbl")]
-position = Vector2(1923, -325)
-
-[node name="SpiderEnemy6" parent="Enemies" unique_id=34571795 instance=ExtResource("21_f1jbl")]
-position = Vector2(1642, -325)
-
-[node name="SpiderEnemy7" parent="Enemies" unique_id=790503032 instance=ExtResource("21_f1jbl")]
-position = Vector2(2525, -356)
-
 [node name="SpiderEnemy" parent="Enemies" unique_id=457331688 instance=ExtResource("21_f1jbl")]
 position = Vector2(237, -52)
 speed = 40
+
+[node name="SpiderEnemy2" parent="Enemies" unique_id=2094844097 groups=["ground"] instance=ExtResource("21_f1jbl")]
+position = Vector2(1920, 0)
+
+[node name="SpiderEnemy3" parent="Enemies" unique_id=2047989655 groups=["ground"] instance=ExtResource("21_f1jbl")]
+position = Vector2(2224, -64)
+
+[node name="SpiderEnemy4" parent="Enemies" unique_id=144675568 groups=["ground"] instance=ExtResource("21_f1jbl")]
+position = Vector2(2592, -96)
+
+[node name="SpiderEnemy5" parent="Enemies" unique_id=1508490887 groups=["ground"] instance=ExtResource("21_f1jbl")]
+position = Vector2(2561, -193)
+
+[node name="SpiderEnemy6" parent="Enemies" unique_id=1517372997 groups=["ground"] instance=ExtResource("21_f1jbl")]
+position = Vector2(2949, -191)
 
 [node name="Collectables" type="Node" parent="." unique_id=369813592]
 
@@ -2354,7 +2357,7 @@ scale = Vector2(1.2131985, 1.2131985)
 script = ExtResource("26_082n1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=1739642203]
-position = Vector2(952.853, -71.71126)
+position = Vector2(1076.4932, -75.00833)
 shape = SubResource("RectangleShape2D_xex6t")
 
 [node name="TutorialMove" type="Area2D" parent="." unique_id=1742689309]
