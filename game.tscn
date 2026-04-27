@@ -1875,7 +1875,11 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
+<<<<<<< HEAD
 position = Vector2(1820, -996)
+=======
+position = Vector2(-644, -17)
+>>>>>>> 31cbc76622b7500d129f460724414fd468dbe4f6
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(1, -9)
