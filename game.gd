@@ -28,3 +28,7 @@ func _update_key_counter() -> void:
 	if not ("collected_keys" in player):
 		return
 	key_counter_label.text = str(player.collected_keys)
+
+
+func _on_tutorial_help_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
