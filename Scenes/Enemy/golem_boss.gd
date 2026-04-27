@@ -7,11 +7,15 @@ extends CharacterBody2D
 @onready var ray_cast_right = $RayCast/RayCastRight
 @onready var ray_cast_left = $RayCast/RayCastLeft
 @onready var attack_area_1 = $AttackArea2D_1
-#@onready var attack_area_2 = $AttackArea2D_2
+@onready var voice_player = $VoicePlayer
+
 @export var rock_scene: PackedScene
 @export var ranged_attack_range : float = 170.0
 @export var shockwave_scene: PackedScene
-#@onready var attack_area_3 = $AttackArea2D_3
+
+@export var voice_50hp: AudioStream
+@export var voice_player_low_hp: AudioStream
+@export var voice_death: AudioStream
 
 var player: CharacterBody2D
 var mandatory_idle_active = false
@@ -22,7 +26,12 @@ var is_close_to_player_3 = false
 var direction = Vector2.RIGHT
 var is_attacking = false
 var is_dead = false
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")	
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var played_50hp = false
+var played_player_low_hp = false
+var voice_cooldown = 0.0
+var voice_cooldown_time = 3.0
 
 @export var change_direction : float = 4.0
 @export var stop_distance : float = 8.0
@@ -31,6 +40,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var move_speed = 28
 @export var chase_speed = 60
 @export var health = 50
+@export var max_health = 50
 @export var knockback_force = Vector2(300, -100)
 
 func _ready():
@@ -39,7 +49,9 @@ func _ready():
 func _physics_process(delta):
 	if player == null:
 		return
-		
+
+	voice_cooldown -= delta
+
 	var distance_to_player = global_position.distance_to(player.global_position)
 	var player_position = player.global_position
 	var direction_to_player_x = player_position.x - global_position.x
@@ -48,7 +60,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	else:
 		velocity.y = 0
-	
+
 	velocity.y = max(velocity.y, 0)
 
 	if is_player_in_range:
@@ -84,11 +96,23 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, move_speed)
 
+	# Tikrina žaidėjo HP
+	if voice_cooldown <= 0 and not played_player_low_hp:
+		if player.currentHealthPoints <= player.maxHealthPoints * 0.3:
+			play_voice(voice_player_low_hp)
+			played_player_low_hp = true
+
 	update_attack_area_direction()
 	if not finite_state_machine.check_if_can_move():
 		velocity.x = 0
 	move_and_slide()
 	velocity.y = max(velocity.y, 0)
+
+func play_voice(stream: AudioStream):
+	if stream and not voice_player.playing and voice_cooldown <= 0:
+		voice_player.stream = stream
+		voice_player.play()
+		voice_cooldown = voice_cooldown_time
 
 func mandatory_transition():
 	mandatory_idle_active = true
@@ -96,12 +120,8 @@ func mandatory_transition():
 func update_attack_area_direction():
 	if direction == Vector2.RIGHT:
 		attack_area_1.scale.x = 1
-		#attack_area_2.scale.x = 1
-		#attack_area_3.scale.x = 1
 	else:
 		attack_area_1.scale.x = -1
-		#attack_area_2.scale.x = -1
-		#attack_area_3.scale.x = -1
 
 func check_wall_collision():
 	if ray_cast_right.is_colliding():
@@ -120,19 +140,17 @@ func start_attack_animation():
 	else:
 		is_close_to_player_2 = true
 
-
 func reset_attack_state():
 	is_close_to_player_1 = false
 	is_close_to_player_2 = false
 	is_close_to_player_3 = false
-	is_attacking = false  
+	is_attacking = false
 
 func _on_player_detected(body):
 	print("Kas įėjo: ", body.name)
 	if body.is_in_group("players"):
 		is_player_in_range = true
 		print("Player rastas!")
-
 
 func _on_player_lost(body):
 	if body.is_in_group("players"):
@@ -142,7 +160,7 @@ func _on_attack1_entered(body):
 	if body.is_in_group("players"):
 		body.TakeDamage(damage_dealt)
 		var knockback_dir = (body.global_position - global_position).normalized()
-		body.ApplyKnockback(knockback_dir * 800) 
+		body.ApplyKnockback(knockback_dir * 800)
 
 func _on_attack2_entered(body):
 	if body.is_in_group("players"):
@@ -159,8 +177,13 @@ func take_damage(damage):
 	health -= damage
 	print(health)
 
+	# 50% HP voice line
+	if health <= max_health * 0.5 and not played_50hp:
+		play_voice(voice_50hp)
+		played_50hp = true
+
 	var knockback_direction = (player.global_position - global_position).normalized()
-	player.ApplyKnockback(knockback_direction * 400)  # ← tiesiogiai ant playerio
+	player.ApplyKnockback(knockback_direction * 400)
 
 	if health <= 0:
 		die()
@@ -174,8 +197,9 @@ func spawn_shockwave():
 	var shockwave = shockwave_scene.instantiate()
 	get_parent().add_child(shockwave)
 	shockwave.global_position = global_position
-	
+
 func die():
 	is_dead = true
+	play_voice(voice_death)
 	set_physics_process(false)
 	finite_state_machine.change_state("Dead State")

@@ -41,7 +41,10 @@
 [ext_resource type="Script" uid="uid://bm84367dqaqtd" path="res://checkpoint_manager.gd" id="35_xex6t"]
 [ext_resource type="PackedScene" uid="uid://dmpnoeq5tempy" path="res://Scenes/checkpoint.tscn" id="36_aa0lp"]
 [ext_resource type="Script" uid="uid://cgx8m4e48ldjh" path="res://tutorial_move.gd" id="38_4v2jo"]
+[ext_resource type="AudioStream" uid="uid://b6022gucltf5a" path="res://puse bosui.wav" id="38_87ddb"]
 [ext_resource type="Script" uid="uid://o07w4fca4d5k" path="res://tutorial_jump.gd" id="39_l1i01"]
+[ext_resource type="AudioStream" uid="uid://4rrpi3wf3i0t" path="res://kai zaidejui mazai.wav" id="39_mljfx"]
+[ext_resource type="AudioStream" uid="uid://bk7f2n5t6dqj7" path="res://kai bosas mirsta.wav" id="40_qpefm"]
 [ext_resource type="Script" uid="uid://bgghn0qpusf5o" path="res://tutorial_double_jump.gd" id="40_r62pu"]
 [ext_resource type="Script" uid="uid://doi0dp8h3quad" path="res://tutorial_dash.gd" id="41_klri6"]
 [ext_resource type="Script" uid="uid://kvqxpo6mwrty" path="res://tutorial_attack.gd" id="42_eu6ph"]
@@ -1872,7 +1875,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(1786, 5)
+position = Vector2(1820, -996)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(1, -9)
@@ -2341,12 +2344,17 @@ position = Vector2(1669, -12)
 
 [node name="Golem boss" parent="." unique_id=1981538001 instance=ExtResource("33_7knny")]
 position = Vector2(1947, -985)
+voice_50hp = ExtResource("38_87ddb")
+voice_player_low_hp = ExtResource("39_mljfx")
+voice_death = ExtResource("40_qpefm")
+
+[node name="VoicePlayer" type="AudioStreamPlayer2D" parent="Golem boss" unique_id=385922642]
 
 [node name="CheckpointManager" type="Node" parent="." unique_id=678176965]
 script = ExtResource("35_xex6t")
 
 [node name="Checkpoint" parent="CheckpointManager" unique_id=1207054332 instance=ExtResource("36_aa0lp")]
-position = Vector2(1783, 16)
+position = Vector2(1767, 12)
 
 [node name="Checkpoint2" parent="CheckpointManager" unique_id=510107111 instance=ExtResource("36_aa0lp")]
 position = Vector2(1554, -940)
