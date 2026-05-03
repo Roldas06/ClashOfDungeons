@@ -1,27 +1,35 @@
-extends "res://base_enemy.gd"
+class_name Spider
+extends CharacterBody2D
+
+
+@export var knockback_strength = 500
+@export var speed := 200
+@export var max_hp := 4
+var hp := 4
+var damage_number_scene = preload("res://DamageNumber.tscn")
+
 
 var direction = 1
 var player_inside = false
 var damage_cooldown = 0.0
-const DAMAGE_INTERVAL = 0.8  
+const DAMAGE_INTERVAL = 0.8
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
-
 @onready var ray_cast_ground_right: RayCast2D = $RayCastDownRight
 @onready var ray_cast_ground_left: RayCast2D = $RayCastDownLeft
 
+func _ready():
+	hp = max_hp
 
 func _process(delta):
-
 	if ray_cast_left.is_colliding() and not ray_cast_left.get_collider().is_in_group("player"):
 		direction = 1
 		animated_sprite.flip_h = false
 	elif ray_cast_right.is_colliding() and not ray_cast_right.get_collider().is_in_group("player"):
 		direction = -1
 		animated_sprite.flip_h = true
-
 
 	if direction == 1 and not ray_cast_ground_right.is_colliding():
 		direction = -1
@@ -34,26 +42,44 @@ func _process(delta):
 	velocity.x = direction * speed
 	move_and_slide()
 	animated_sprite.play("walk")
+
 	if player_inside and damage_cooldown <= 0.0:
 		_deal_damage_to_player()
 		damage_cooldown = DAMAGE_INTERVAL
 	elif damage_cooldown > 0.0:
 		damage_cooldown -= delta
 
+func take_damage(amount):
+	hp -= amount
+	var dmg = damage_number_scene.instantiate()
+	get_parent().add_child(dmg)
+	dmg.spawn(amount, global_position + Vector2(0, -20))
+	on_hurt()
+	if hp <= 0:
+		die()
+
+func die():
+	on_death()
+	var animated_sprite_node = get_node_or_null("AnimatedSprite2D")
+	if animated_sprite_node and animated_sprite_node.sprite_frames.has_animation("death"):
+		await animated_sprite_node.animation_finished
+	queue_free()
+
+func on_hurt():
+	pass
+
+func on_death():
+	pass
+
 func _calculate_knockback_dir(body: Node2D) -> Vector2:
 	var delta_vec = body.global_position - global_position
 	var dir = Vector2.ZERO
-
-
 	if abs(delta_vec.x) >= abs(delta_vec.y):
-	
 		dir.x = sign(delta_vec.x)
 		dir.y = 0.0
 	else:
-		
 		dir.x = sign(delta_vec.x) if delta_vec.x != 0 else 1.0
-		dir.y = 0.5  
-
+		dir.y = 0.5
 	return dir.normalized() * knockback_strength
 
 func _deal_damage_to_player():
@@ -67,4 +93,3 @@ func _deal_damage_to_player():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("TakeDamage"):
 		player_inside = true
-	

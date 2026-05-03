@@ -1875,10 +1875,10 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(499, 9)
+position = Vector2(764, -112)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
-position = Vector2(1, -9)
+position = Vector2(3, 4)
 zoom = Vector2(2, 2)
 limit_left = -9999956
 limit_top = -10000004
@@ -1897,6 +1897,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="sfx_damage" type="AudioStreamPlayer2D" parent="Player" unique_id=350279563]
+position = Vector2(11, 7)
 stream = ExtResource("4_xfvwf")
 bus = &"SFX"
 
@@ -2205,7 +2206,7 @@ scale = Vector2(7.752812, 3.0952275)
 
 [node name="Sprite2D" parent="BackGrounds" unique_id=945344100 instance=ExtResource("7_eow3j")]
 z_index = -4096
-position = Vector2(-386, -501)
+position = Vector2(-367, -503)
 scale = Vector2(1.2077242, 1.2150115)
 
 [node name="BackgroundLayer2" type="Sprite2D" parent="BackGrounds/Sprite2D" unique_id=610254553]

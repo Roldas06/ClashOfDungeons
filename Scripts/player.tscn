@@ -224,10 +224,11 @@ func _on_dash_cooldown_timeout() -> void:
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
-	if is_blocking:
+	if is_blocking or is_dead:
 		return
 	
 	currentHealthPoints -= damageTaken
+	currentHealthPoints = max(currentHealthPoints, 0)
 	sfx_damage.play()
 	healthChanged.emit(currentHealthPoints)
 	modulate = Color(1, 0.2, 0.2)
