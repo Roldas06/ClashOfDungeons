@@ -58,11 +58,12 @@ func take_damage(amount):
 	if hp <= 0:
 		die()
 
+
 func die():
 	on_death()
-	var animated_sprite_node = get_node_or_null("AnimatedSprite2D")
-	if animated_sprite_node and animated_sprite_node.sprite_frames.has_animation("death"):
-		await animated_sprite_node.animation_finished
+	if animated_sprite and animated_sprite.sprite_frames.has_animation("death"):
+		animated_sprite.play("death")
+		await animated_sprite.animation_finished
 	queue_free()
 
 func on_hurt():

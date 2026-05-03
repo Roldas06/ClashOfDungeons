@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c52v0j70ywdcu"]
+
+[ext_resource type="Script" uid="uid://c6y340sqobf33" path="res://arrow.gd" id="1_6spot"]
+[ext_resource type="Texture2D" uid="uid://da806wg5kluqa" path="res://assets/skeleton_spritesheet.png" id="2_cdw00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clvg8"]
+atlas = ExtResource("2_cdw00")
+region = Rect2(700, 295, 139, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ov54"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clvg8")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edr14"]
+size = Vector2(62.0625, 10)
+
+[node name="arrow" type="Area2D" unique_id=1251896307]
+script = ExtResource("1_6spot")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2037437171]
+position = Vector2(10, 12)
+scale = Vector2(0.9892086, 1.1440679)
+sprite_frames = SubResource("SpriteFrames_7ov54")
+animation = &"arrow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136570544]
+position = Vector2(-6, 23)
+shape = SubResource("RectangleShape2D_edr14")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

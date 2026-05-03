@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyxamajjogscs"]
 
 [ext_resource type="Texture2D" uid="uid://da806wg5kluqa" path="res://assets/skeleton_spritesheet.png" id="1_8qklt"]
+[ext_resource type="Script" uid="uid://b1i6v1a6f60o8" path="res://Scenes/Enemy/skeleton_enemy.gd" id="1_soksv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qklt"]
 atlas = ExtResource("1_8qklt")
@@ -103,15 +104,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdlix"]
-size = Vector2(92, 181)
+size = Vector2(6.666668, 15.555555)
 
 [node name="skeleton_enemy" type="CharacterBody2D" unique_id=1985701240]
+script = ExtResource("1_soksv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1106354543]
+position = Vector2(1.3750008, 1.1500008)
+scale = Vector2(0.1, 0.113)
 sprite_frames = SubResource("SpriteFrames_2xhwl")
 animation = &"attack"
-frame_progress = 0.1581914
+frame_progress = 0.8409704
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1563463912]
-position = Vector2(-14, -6.5)
+position = Vector2(2, 0)
+rotation = -3.1415925
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_fdlix")
