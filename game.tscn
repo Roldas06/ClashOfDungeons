@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cflo52qh071vf" path="res://assets/oak_woods_v1.0/decorations/grass_3.png" id="12_e36ub"]
 [ext_resource type="Texture2D" uid="uid://bg2bapltmcdm2" path="res://assets/brackeys_platformer_assets/BoltIcon.png" id="12_t46w6"]
 [ext_resource type="Texture2D" uid="uid://didl7nn8uidw2" path="res://assets/oak_woods_v1.0/decorations/grass_1.png" id="13_hb5m1"]
+[ext_resource type="Shader" uid="uid://b6yub0os7b1ms" path="res://low_hp_vignette.gdshader" id="13_qpefm"]
 [ext_resource type="Texture2D" uid="uid://cf08a37rgb82l" path="res://assets/oak_woods_v1.0/decorations/sign.png" id="14_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://2opdq83h1334" path="res://assets/oak_woods_v1.0/decorations/rock_3.png" id="15_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="16_f1jbl"]
@@ -107,6 +108,11 @@ func _process(delta: float) -> void:
 		label.visible = true
 		icon.modulate.a = 0.5
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tb2lt"]
+shader = ExtResource("13_qpefm")
+shader_parameter/intensity = 0.0
+shader_parameter/vignette_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ryrav"]
 load_path = "res://.godot/imported/oak_woods_tileset.png-26bf3f81e7c3ef8c50c7b5087e8e4015.ctex"
@@ -1809,8 +1815,8 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_f1jbl")
 
 [sub_resource type="Gradient" id="Gradient_xa8c5"]
-offsets = PackedFloat32Array(0.5703839, 0.99817187)
-colors = PackedColorArray(0.9764706, 0.6117647, 0.043137256, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.44662923, 0.69382024, 1)
+colors = PackedColorArray(0.1882353, 0.36078432, 0.36862746, 1, 0.39215687, 0.7607843, 0.38039216, 1, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_boyg6"]
 resource_name = "Move"
@@ -1876,7 +1882,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(764, -112)
+position = Vector2(760, -56)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -2087,6 +2093,14 @@ offset_top = 55.0
 offset_right = 51.0
 offset_bottom = 95.0
 
+[node name="LowHPVignette" type="ColorRect" parent="CanvasLayer" unique_id=1001863739]
+material = SubResource("ShaderMaterial_tb2lt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TileMap" type="Node2D" parent="." unique_id=5178889]
 
 [node name="LayerTop" type="TileMapLayer" parent="TileMap" unique_id=60467948 groups=["ground"]]
@@ -2240,12 +2254,28 @@ type = "heal"
 position = Vector2(2201, 92)
 scale = Vector2(16.702827, 5.581879)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1719725987]
+[node name="Lava2" type="CPUParticles2D" parent="." unique_id=1719725987]
 position = Vector2(-203, -29)
 amount = 68
 emission_shape = 3
 emission_rect_extents = Vector2(48.265, 1)
 gravity = Vector2(0, -60)
+color_ramp = SubResource("Gradient_xa8c5")
+
+[node name="Green water" type="CPUParticles2D" parent="." unique_id=345275569]
+position = Vector2(2209, 36)
+amount = 192
+emission_shape = 3
+emission_rect_extents = Vector2(160.905, 1)
+gravity = Vector2(0, -75.945)
+color_ramp = SubResource("Gradient_xa8c5")
+
+[node name="Green water2" type="CPUParticles2D" parent="." unique_id=1464959716]
+position = Vector2(2511, -63)
+amount = 78
+emission_shape = 3
+emission_rect_extents = Vector2(42.995, 1)
+gravity = Vector2(0, -51.075)
 color_ramp = SubResource("Gradient_xa8c5")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=886927653]
