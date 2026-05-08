@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dunsbwhdwedfo" path="res://Scripts/States/Golem/Golem_Attack2_State.gd" id="14_pyq8p"]
 [ext_resource type="Script" uid="uid://bslrtyi551q42" path="res://Scripts/States/Golem/Golem_Dead_State.gd" id="15_derup"]
 [ext_resource type="Script" uid="uid://srqxonk8bhv0" path="res://Scripts/States/Golem/Golem_Mandatory_Idle_State.gd" id="16_derup"]
+[ext_resource type="AudioStream" uid="uid://cipvg7to6ob6b" path="res://assets/oak_woods_v1.0/Golem/Monster Roar sound effect (deleted).mp3" id="20_ghhf6"]
 
 [sub_resource type="Animation" id="Animation_2jy0y"]
 resource_name = "Attack_1"
@@ -418,6 +419,7 @@ shockwave_scene = ExtResource("3_gguom")
 attack_range = 60.0
 damage_dealt = 20
 health = 150
+max_health = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=925905379]
 texture = ExtResource("1_8ie7t")
@@ -431,12 +433,6 @@ speed_scale = 0.776
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=328755400]
 visible = false
 shape = SubResource("CapsuleShape2D_pyq8p")
-
-[node name="debug" type="Label" parent="." unique_id=826776040]
-offset_left = -20.0
-offset_top = -57.0
-offset_right = 20.0
-offset_bottom = -34.0
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=655488201]
 visible = false
@@ -498,6 +494,10 @@ collision_layer = 0
 position = Vector2(-3.5, -4.5)
 shape = SubResource("RectangleShape2D_pyq8p")
 disabled = true
+
+[node name="sfx_roar" type="AudioStreamPlayer2D" parent="." unique_id=2113913022]
+stream = ExtResource("20_ghhf6")
+volume_db = -18.237
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detected"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_lost"]

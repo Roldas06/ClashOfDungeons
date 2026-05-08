@@ -9,6 +9,11 @@ extends CharacterBody2D
 @onready var attack_area_1 = $AttackArea2D_1
 @onready var voice_player = $VoicePlayer
 
+var phase_2_active = false
+@export var phase_2_speed_multiplier = 1.8
+@export var phase_2_attack_range_multiplier = 0.8
+@onready var sfx_roar: AudioStreamPlayer2D = $sfx_roar
+
 @export var rock_scene: PackedScene
 @export var ranged_attack_range : float = 170.0
 @export var shockwave_scene: PackedScene
@@ -173,30 +178,46 @@ func _on_attack3_entered(body):
 func take_damage(damage):
 	if is_dead:
 		return
+	
 	health -= damage
 	print("Health: ", health)
-	if health <= 0:
-		is_dead = true  
-		print("DIE kviečiamas!")
-		die()
-	else:
-		finite_state_machine.change_state("Hurt State")
-
-	health -= damage
-	print(health)
-
+	
+	var knockback_dir = (player.global_position - global_position).normalized()
+	player.ApplyKnockback(knockback_dir * 300)
+	
 	# 50% HP voice line
 	if health <= max_health * 0.5 and not played_50hp:
 		play_voice(voice_50hp)
 		played_50hp = true
-
-	var knockback_direction = (player.global_position - global_position).normalized()
-	player.ApplyKnockback(knockback_direction * 400)
-
+	
+	# Phase 2 triggeris
+	if health <= max_health * 0.5 and not phase_2_active:
+		_enter_phase_2()
+	
 	if health <= 0:
+		is_dead = true
+		print("DIE kviečiamas!")
 		die()
 	else:
 		finite_state_machine.change_state("Hurt State")
+		
+func _enter_phase_2():
+	phase_2_active = true
+	
+	# Roar garsas
+	sfx_roar.play()
+	
+	# Screen shake
+	var camera = get_tree().get_first_node_in_group("camera")
+	if camera:
+		camera.shake(50.0)
+	
+	# Padidink greitį
+	chase_speed = int(chase_speed * phase_2_speed_multiplier)
+	move_speed = int(move_speed * phase_2_speed_multiplier)
+	
+	# Padidink atakų dažnumą - sumažink range tarp atakų
+	ranged_attack_range = ranged_attack_range * phase_2_attack_range_multiplier
 
 func apply_knockback(force: Vector2):
 	player.ApplyKnockback(force)
