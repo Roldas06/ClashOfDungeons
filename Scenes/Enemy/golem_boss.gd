@@ -173,6 +173,14 @@ func _on_attack3_entered(body):
 func take_damage(damage):
 	if is_dead:
 		return
+	health -= damage
+	print("Health: ", health)
+	if health <= 0:
+		is_dead = true  
+		print("DIE kviečiamas!")
+		die()
+	else:
+		finite_state_machine.change_state("Hurt State")
 
 	health -= damage
 	print(health)
@@ -203,3 +211,10 @@ func die():
 	play_voice(voice_death)
 	set_physics_process(false)
 	finite_state_machine.change_state("Dead State")
+	print("Timer prasideda!")
+	var timer = get_tree().create_timer(1.0)
+	timer.timeout.connect(func():
+		print("Timer baigtas!")
+		var boss_defeated = preload("res://Scenes/BossDefeated.tscn").instantiate()
+		get_tree().root.add_child(boss_defeated)
+	)

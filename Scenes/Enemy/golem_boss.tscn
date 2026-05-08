@@ -417,6 +417,7 @@ rock_scene = ExtResource("2_ouu71")
 shockwave_scene = ExtResource("3_gguom")
 attack_range = 60.0
 damage_dealt = 20
+health = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=925905379]
 texture = ExtResource("1_8ie7t")
