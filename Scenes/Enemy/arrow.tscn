@@ -22,6 +22,7 @@ animations = [{
 size = Vector2(62.0625, 10)
 
 [node name="arrow" type="Area2D" unique_id=1251896307]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_6spot")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2037437171]

@@ -62,9 +62,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ohx21")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 3.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,7 +76,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ekyqi")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -104,7 +104,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdlix"]
-size = Vector2(6.666668, 15.555555)
+size = Vector2(12.222223, 21.11111)
 
 [node name="skeleton_enemy" type="CharacterBody2D" unique_id=1985701240]
 script = ExtResource("1_soksv")
@@ -114,10 +114,9 @@ position = Vector2(1.3750008, 1.1500008)
 scale = Vector2(0.1, 0.113)
 sprite_frames = SubResource("SpriteFrames_2xhwl")
 animation = &"attack"
-frame_progress = 0.8409704
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1563463912]
-position = Vector2(2, 0)
+position = Vector2(-0.49999967, -0.5000006)
 rotation = -3.1415925
 scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_fdlix")
