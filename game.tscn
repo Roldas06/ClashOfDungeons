@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="16_f1jbl"]
 [ext_resource type="PackedScene" uid="uid://dx723eineutpv" path="res://dungeon_door.tscn" id="16_m28ev"]
 [ext_resource type="Texture2D" uid="uid://bijpryjja6a6b" path="res://assets/oak_woods_v1.0/decorations/rock_2.png" id="17_vaj68"]
+[ext_resource type="PackedScene" uid="uid://212gb6le8knc" path="res://ice_floor.tscn" id="18_tb2lt"]
 [ext_resource type="PackedScene" uid="uid://bsy2r14hcj28v" path="res://Scenes/Enemy/spider_enemy.tscn" id="21_f1jbl"]
 [ext_resource type="PackedScene" uid="uid://ceryn1xa0edpk" path="res://Scenes/breakable_block.tscn" id="23_break"]
 [ext_resource type="PackedScene" uid="uid://c6x15bx1ss3rv" path="res://Scenes/falling_rock.tscn" id="24_frock"]
@@ -1882,7 +1883,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(1595, -977)
+position = Vector2(1579, -941)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -2444,6 +2445,10 @@ shape = SubResource("RectangleShape2D_kq12w")
 
 [node name="skeleton_enemy" parent="." unique_id=1985701240 instance=ExtResource("50_mljfx")]
 position = Vector2(496, 10)
+
+[node name="Area2D2" parent="." unique_id=1492656518 instance=ExtResource("18_tb2lt")]
+position = Vector2(2096, -929.99994)
+scale = Vector2(17.879963, 1.5924896)
 
 [connection signal="body_entered" from="Deathzone" to="Deathzone" method="_on_body_entered"]
 [connection signal="body_entered" from="TutorialMove" to="TutorialMove" method="_on_body_entered"]

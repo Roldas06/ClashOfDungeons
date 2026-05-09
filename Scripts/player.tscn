@@ -118,10 +118,20 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x *= lava_horizontal_drag
 		else:
-			if direction:
-				velocity.x = direction * final_speed
+			var on_ice: bool = get_meta(\"on_ice\", false)
+			if on_ice:
+				var friction: float = get_meta(\"ice_friction\", 0.92)
+				if direction:
+					# Gradually accelerate instead of instant speed
+					velocity.x = move_toward(velocity.x, direction * final_speed, final_speed * (1.0 - friction) * 8)
+				else:
+					# Slide — barely slows down
+					velocity.x *= friction
 			else:
-				velocity.x = move_toward(velocity.x, 0, final_speed)
+				if direction:
+					velocity.x = direction * final_speed
+				else:
+					velocity.x = move_toward(velocity.x, 0, final_speed)
 
 	# 5. ATTACK
 	if Input.is_action_just_pressed(\"attack\"):
