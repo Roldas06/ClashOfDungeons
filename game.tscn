@@ -1882,7 +1882,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(1615, -977)
+position = Vector2(520, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -2337,7 +2337,7 @@ position = Vector2(1775, -333)
 [node name="Enemies" type="Node" parent="." unique_id=1031763891]
 
 [node name="BatEnemy" parent="Enemies" unique_id=1393629977 instance=ExtResource("29_bnpwn")]
-position = Vector2(-482, -68)
+position = Vector2(1808, -25)
 
 [node name="sfx_damage" type="AudioStreamPlayer2D" parent="Enemies/BatEnemy" unique_id=1186431588]
 position = Vector2(-6, 3)
@@ -2349,7 +2349,7 @@ position = Vector2(237, -52)
 speed = 40
 
 [node name="SpiderEnemy2" parent="Enemies" unique_id=2094844097 groups=["ground"] instance=ExtResource("21_f1jbl")]
-position = Vector2(1920, 0)
+position = Vector2(1737, 14)
 
 [node name="SpiderEnemy3" parent="Enemies" unique_id=2047989655 groups=["ground"] instance=ExtResource("21_f1jbl")]
 position = Vector2(2224, -64)

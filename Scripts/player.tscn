@@ -20,6 +20,7 @@ script/source = "extends CharacterBody2D
 @onready var sfx_damage: AudioStreamPlayer2D = $sfx_damage
 
 var is_dead := false
+var is_invincible := false  # ← ADDED
 var is_in_lava = false
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
@@ -69,11 +70,11 @@ func _ready():
 	attack_damage = Global.attack_damage
 	unlocked_levels = Global.unlocked_levels
 	currentHealthPoints = Global.maxHealthPoints
-	
+
 func _physics_process(delta: float) -> void:
 	dash_cooldown = $DashCooldown.time_left
 	projectile_cooldown = $ProjectileCooldown.time_left
-	
+
 	if knockback_timer > 0:
 		knockback_timer -= delta
 		move_and_slide()
@@ -125,7 +126,7 @@ func _physics_process(delta: float) -> void:
 	# 5. ATTACK
 	if Input.is_action_just_pressed(\"attack\"):
 		_attack()
-		
+
 	# 6. PROJECTILE
 	if Input.is_action_just_pressed(\"projectile\"):
 		if not can_shoot:
@@ -146,7 +147,7 @@ func _physics_process(delta: float) -> void:
 		stamina += stamina_recovery * delta
 
 	stamina = clamp(stamina, 0, max_stamina)
-		
+
 	move_and_slide()
 
 # --- DASH FUNCTIONS ---
@@ -165,7 +166,6 @@ func _start_dash():
 	set_collision_layer_value(1, true)
 
 	$DashCooldown.start()
-	
 
 # --- ATTACK FUNCTIONS ---
 func _attack():
@@ -206,16 +206,14 @@ func _handle_lava_damage(delta: float) -> void:
 func shoot():
 	var projectile = projectile_scene.instantiate()
 	get_parent().add_child(projectile)
-	
-	#Direction from hand rotation
+
 	var dir = Vector2.RIGHT.rotated($HandAnchor.global_rotation)
-	
+
 	projectile.direction = dir
 	projectile.projectile_owner = self
 	projectile.rotation = $HandAnchor.global_rotation
-	#Spawn at hand position
 	projectile.global_position = $HandAnchor/Crosshair.global_position + dir * 10
-	
+
 func _on_projectile_cooldown_timeout() -> void:
 	can_shoot = true
 
@@ -224,9 +222,9 @@ func _on_dash_cooldown_timeout() -> void:
 
 # --- HELPER FUNCTIONS ---
 func TakeDamage(damageTaken):
-	if is_blocking or is_dead:
+	if is_blocking or is_dead or is_invincible:  # ← ADDED is_invincible
 		return
-	
+
 	currentHealthPoints -= damageTaken
 	currentHealthPoints = max(currentHealthPoints, 0)
 	sfx_damage.play()
@@ -235,12 +233,10 @@ func TakeDamage(damageTaken):
 	var tween = create_tween()
 	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.15)
 
-	# Spawn damage number
 	var dmg_num = damage_number_scene.instantiate()
 	get_parent().add_child(dmg_num)
 	dmg_num.spawn(damageTaken, global_position + Vector2(0, -40))
 
-	# Screen shake
 	var camera = get_tree().get_first_node_in_group(\"camera\")
 	if camera:
 		camera.shake(6.0)
@@ -256,7 +252,7 @@ func Death():
 	is_dead = true
 	sfx_damage.play()
 	set_physics_process(false)
-	var anim_length = 1.2 
+	var anim_length = 1.2
 	await get_tree().create_timer(anim_length).timeout
 	print(\"GAME OVER!\")
 	get_tree().call_deferred(\"change_scene_to_file\", \"res://main_menu.tscn\")
