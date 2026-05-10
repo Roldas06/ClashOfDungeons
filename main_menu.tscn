@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://yct7wpa2ixwe"]
 
 [ext_resource type="Script" uid="uid://wnibtqun2pej" path="res://main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Texture2D" uid="uid://cdmmy1donusr4" path="res://backroundasZaidimui2.png" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://cwovig2tkrma0" path="res://Scenes/2d5f2ce0-b834-44b4-bddb-2fd275b36cad.jpg" id="2_8u0te"]
 [ext_resource type="Texture2D" uid="uid://50yaxqbqkajs" path="res://Scripts/Start1.png" id="3_cm266"]
 [ext_resource type="AudioStream" uid="uid://df3cjb6xrjkad" path="res://The Grand Affair - Coupe  NO COPYRIGHT 8-bit Music.mp3" id="3_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://bddb8i16pgvbb" path="res://Scripts/Start4.png" id="4_g8g3n"]
@@ -76,9 +76,9 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jix8l")
 
 [node name="BackroundasZaidimui2" type="Sprite2D" parent="Panel" unique_id=1913894831]
-position = Vector2(826.7814, 443.6875)
-scale = Vector2(1.2879801, 1.2857813)
-texture = ExtResource("2_7vrkn")
+position = Vector2(725.33386, 442.48846)
+scale = Vector2(1.4153636, 1.5437465)
+texture = ExtResource("2_8u0te")
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1957560105]
 visible = false
