@@ -61,9 +61,12 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.collected_keys == 3:
 			is_transitioning = true
 			$AnimatedSprite2D.play(\"opening\")
+			if Global.unlocked_levels < 2:
+				stat_boost_ui.show_ui()
+			else:
+				_start_transition(body)
 			Global.unlocked_levels = 2
 			SaveGame.save_game()
-			stat_boost_ui.show_ui()
 
 func _on_boost_selected(boost_data: Dictionary) -> void:
 	Global.apply_boost(boost_data)
