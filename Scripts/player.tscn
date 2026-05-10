@@ -74,6 +74,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	dash_cooldown = $DashCooldown.time_left
 	projectile_cooldown = $ProjectileCooldown.time_left
+	
+	if Global.ui_open:
+		return
 
 	if knockback_timer > 0:
 		knockback_timer -= delta
