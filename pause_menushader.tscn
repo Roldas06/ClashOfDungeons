@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bkkk30e1oqjq7" path="res://Scripts/Quit1.png" id="9_mrabw"]
 [ext_resource type="Texture2D" uid="uid://cthu35v4jf5ak" path="res://Scripts/Quit4.png" id="10_h3cgv"]
 [ext_resource type="Texture2D" uid="uid://bw2ck67q2cetg" path="res://Scripts/Quit2.png" id="11_n6rg2"]
+[ext_resource type="FontFile" uid="uid://rtkrg4nyretj" path="res://Scripts/PixelatedEleganceRegular-ovawB.ttf" id="12_c1i01"]
 
 [sub_resource type="Shader" id="Shader_e3xwf"]
 code = "shader_type canvas_item;
@@ -44,6 +45,7 @@ offset_left = 6.0
 offset_top = 5.0
 offset_right = 1426.0
 offset_bottom = 870.0
+mouse_filter = 2
 script = ExtResource("1_6pggi")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1185013775]
@@ -56,9 +58,11 @@ offset_right = 6.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=239737196]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 72
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=1313065245]
@@ -77,6 +81,7 @@ grow_vertical = 2
 theme_override_constants/separation = 27
 
 [node name="Resume" type="TextureButton" parent="." unique_id=926820752]
+process_mode = 3
 layout_mode = 0
 offset_left = 471.0
 offset_top = 320.8125
@@ -90,6 +95,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Restart" type="TextureButton" parent="." unique_id=2053946717]
+process_mode = 3
 layout_mode = 0
 offset_left = 473.0
 offset_top = 432.0
@@ -103,6 +109,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Quit" type="TextureButton" parent="." unique_id=195030502]
+process_mode = 3
 layout_mode = 0
 offset_left = 477.0
 offset_top = 535.0
@@ -114,6 +121,17 @@ texture_pressed = ExtResource("10_h3cgv")
 texture_hover = ExtResource("11_n6rg2")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="LevelsButton" type="Button" parent="." unique_id=18560042]
+process_mode = 3
+layout_mode = 0
+offset_left = 642.0
+offset_top = 635.0
+offset_right = 834.0
+offset_bottom = 680.0
+theme_override_fonts/font = ExtResource("12_c1i01")
+theme_override_font_sizes/font_size = 31
+text = "LEVELS"
 
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

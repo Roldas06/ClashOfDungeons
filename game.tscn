@@ -2951,13 +2951,9 @@ offset_right = 319.0
 offset_bottom = 413.25
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("9_dhpj7")
 expand_mode = 1
-
-[node name="Pause_menu" parent="CanvasLayer" unique_id=1637532932 instance=ExtResource("32_dhpj7")]
-visible = false
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Panel" type="Control" parent="CanvasLayer" unique_id=52922228]
 layout_mode = 3
@@ -3075,6 +3071,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Pause_menu" parent="CanvasLayer" unique_id=1637532932 instance=ExtResource("32_dhpj7")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="TileMapSpikes" type="TileMap" parent="." unique_id=384713187]
 scale = Vector2(0.1, 0.1)
@@ -3416,6 +3416,8 @@ position = Vector2(1947, -985)
 voice_50hp = ExtResource("38_87ddb")
 voice_player_low_hp = ExtResource("39_mljfx")
 voice_death = ExtResource("40_qpefm")
+health = 50
+max_health = 50
 
 [node name="VoicePlayer" type="AudioStreamPlayer2D" parent="Golem boss" unique_id=385922642]
 

@@ -1,11 +1,10 @@
 extends Control
 
 func _ready():
-	# Pradžioje meniu turi būti paslėptas
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide()
 
 func _process(_delta):
-	# Tikriname ESC (ar tavo "pause" action) kiekvieną kadrą
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
 			resume()
@@ -14,19 +13,22 @@ func _process(_delta):
 
 func resume():
 	get_tree().paused = false
-	hide() # Paslepiame meniu
+	hide()
 
 func pause():
 	get_tree().paused = true
-	show() # Parodome meniu
+	show()
 
 func _on_resume_pressed() -> void:
+	print("RESUME PASPAUSTAS!")
 	resume()
 
 func _on_restart_pressed() -> void:
-	resume() # Svarbu atšaukti pauzę prieš perkraunant sceną!
+	print("RESTART PASPAUSTAS!")
+	resume()
 	get_tree().reload_current_scene()
 
 func _on_quit_pressed() -> void:
+	print("QUIT PASPAUSTAS!")
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://main_menu.tscn")
