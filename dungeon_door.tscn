@@ -66,6 +66,7 @@ func _on_body_entered(body: Node2D) -> void:
 			else:
 				_start_transition(body)
 			Global.unlocked_levels = 2
+			body.collected_keys = 0
 			SaveGame.save_game()
 
 func _on_boost_selected(boost_data: Dictionary) -> void:
