@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dgrh1fuib3ym"]
+
+[ext_resource type="Script" uid="uid://cmsnltfbut2kb" path="res://dungeon_door3.gd" id="1_olvc2"]
+[ext_resource type="Texture2D" uid="uid://oplt6mjjbd4y" path="res://assets/!Demon Door.png" id="2_ofn0e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2cb6"]
+atlas = ExtResource("2_ofn0e")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21psi"]
+atlas = ExtResource("2_ofn0e")
+region = Rect2(0, 240, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6du3"]
+atlas = ExtResource("2_ofn0e")
+region = Rect2(0, 480, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_004v3"]
+atlas = ExtResource("2_ofn0e")
+region = Rect2(0, 720, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s2h0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2cb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21psi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6du3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_004v3")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4tf"]
+size = Vector2(155, 147)
+
+[node name="DungeonDoor3" type="Node2D" unique_id=1903173251]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1458331788]
+script = ExtResource("1_olvc2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1547851988]
+sprite_frames = SubResource("SpriteFrames_s2h0a")
+animation = &"opening"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=886872842]
+position = Vector2(-0.5, -40.5)
+shape = SubResource("RectangleShape2D_3a4tf")
