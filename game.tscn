@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bg2bapltmcdm2" path="res://assets/brackeys_platformer_assets/BoltIcon.png" id="12_t46w6"]
 [ext_resource type="Texture2D" uid="uid://didl7nn8uidw2" path="res://assets/oak_woods_v1.0/decorations/grass_1.png" id="13_hb5m1"]
 [ext_resource type="Shader" uid="uid://b6yub0os7b1ms" path="res://low_hp_vignette.gdshader" id="13_qpefm"]
+[ext_resource type="Texture2D" uid="uid://bptt3e1csw863" path="res://trap.png" id="14_bqa6y"]
 [ext_resource type="Texture2D" uid="uid://cf08a37rgb82l" path="res://assets/oak_woods_v1.0/decorations/sign.png" id="14_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://2opdq83h1334" path="res://assets/oak_woods_v1.0/decorations/rock_3.png" id="15_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dapu6gygijgmq" path="res://assets/oak_woods_v1.0/decorations/rock_1.png" id="16_f1jbl"]
@@ -122,6 +123,22 @@ func _process(delta: float) -> void:
 shader = ExtResource("13_qpefm")
 shader_parameter/intensity = 0.0
 shader_parameter/vignette_color = Color(1, 0, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_du4n2"]
+texture = ExtResource("14_bqa6y")
+0:2/size_in_atlas = Vector2i(6, 13)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.874863, -106.34346, 49.281128, -103.74971, 51.874847, 108.937225, -51.874863, 101.156006)
+7:2/size_in_atlas = Vector2i(6, 13)
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.874863, -106.34346, 49.281128, -103.74971, 51.874847, 108.937225, -51.874863, 101.156006)
+14:2/size_in_atlas = Vector2i(5, 13)
+14:2/0 = 0
+14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.874863, -106.34346, 49.281128, -103.74971, 51.874847, 108.937225, -51.874863, 101.156006)
+
+[sub_resource type="TileSet" id="TileSet_ra4rb"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_du4n2")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ryrav"]
 load_path = "res://.godot/imported/oak_woods_tileset.png-26bf3f81e7c3ef8c50c7b5087e8e4015.ctex"
@@ -2840,7 +2857,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(5366, -780)
+position = Vector2(-592, -26)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -3058,6 +3075,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TileMapSpikes" type="TileMap" parent="." unique_id=384713187]
+scale = Vector2(0.1, 0.1)
+tile_set = SubResource("TileSet_ra4rb")
+format = 2
+layer_0/tile_data = PackedInt32Array(-590078, 917504, 2)
 
 [node name="TileMap" type="Node2D" parent="." unique_id=5178889]
 

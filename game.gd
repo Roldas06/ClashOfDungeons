@@ -67,3 +67,7 @@ func _update_key_counter() -> void:
 
 func _on_tutorial_help_body_entered(body: Node2D) -> void:
 	pass
+
+
+func _on_spikes_area_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
