@@ -23,7 +23,7 @@ func _build_overlay():
 	canvas.add_child(overlay)
 
 	text_label = Label.new()
-	text_label.text = "Entering Boss Room"
+	text_label.text = "Entering Level 3"
 	text_label.set_anchors_preset(Control.PRESET_CENTER)
 	text_label.offset_left = -300
 	text_label.offset_right = 300
@@ -85,7 +85,7 @@ func _start_transition(body):
 
 	# Teleport while dark
 	tween.tween_callback(func():
-		body.global_position = Vector2(1600, -930)
+		body.global_position = Vector2(525, -4850)
 	)
 
 	# Hold
