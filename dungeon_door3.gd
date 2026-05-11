@@ -85,7 +85,7 @@ func _start_transition(body):
 
 	# Teleport while dark
 	tween.tween_callback(func():
-		body.global_position = Vector2(1600, -930)
+		body.global_position = Vector2(1550, -930)
 	)
 
 	# Hold
