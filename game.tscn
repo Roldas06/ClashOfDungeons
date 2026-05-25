@@ -3521,6 +3521,7 @@ script = ExtResource("35_xex6t")
 
 [node name="Checkpoint" parent="CheckpointManager" unique_id=1207054332 instance=ExtResource("36_aa0lp")]
 position = Vector2(1735, 28)
+level_number = null
 
 [node name="Checkpoint2" parent="CheckpointManager" unique_id=510107111 instance=ExtResource("36_aa0lp")]
 position = Vector2(4273, -731)
@@ -3528,6 +3529,7 @@ level_number = 3
 
 [node name="Checkpoint3" parent="CheckpointManager" unique_id=2088186732 instance=ExtResource("36_aa0lp")]
 position = Vector2(430, -4649)
+level_number = null
 
 [node name="Deathzone" type="Area2D" parent="." unique_id=1106408805]
 position = Vector2(1548, 193)

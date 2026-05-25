@@ -289,13 +289,24 @@ func ApplyKnockback(force: Vector2) -> void:
 	knockback_timer = 0.15
 
 func Death():
+	if is_dead: return # Prevent calling death multiple times
+	
 	is_dead = true
 	sfx_damage.play()
-	set_physics_process(false)
+	set_physics_process(false) # Stop the player from moving
+	
+	# Wait for your death animation to finish
 	var anim_length = 1.2
 	await get_tree().create_timer(anim_length).timeout
-	print(\"GAME OVER!\")
-	get_tree().call_deferred(\"change_scene_to_file\", \"res://main_menu.tscn\")
+	
+	print(\"GAME OVER! Reloading at Checkpoint...\")
+	
+	# 1. Check if we have a checkpoint saved in the Global script
+	if Global.checkpoint_pos != null:
+		Global.start_at_checkpoint = true
+		
+	# 2. Reload the CURRENT level instead of going to the main menu
+	get_tree().reload_current_scene()
 "
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
