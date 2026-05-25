@@ -1,5 +1,5 @@
 # Clash of Dungeons
-## 🕯 About The Game
+##  About The Game
 <p align="left">
 Clash of Dungeons is a dark 2D platformer set deep within gloomy underground labyrinths filled with deadly traps, challenging parkour, and dangerous enemies. Explore mysterious dungeons, collect all 3 hidden keys, and survive long enough to unlock the dungeon gate and escape to the next challenge. Every level tests your precision, timing, and courage in a world where danger lurks around every corner.
 </p>
