@@ -79,8 +79,8 @@ func _on_levels_popup_index_pressed(index: int) -> void:
 			Global.start_at_checkpoint = false
 			Global.checkpoint_pos = null
 			get_tree().change_scene_to_file("res://game.tscn")
-		1: # LEVEL 2 (Įrašyk tikras 2 lygio koordinates vietoj 0, 0!)
-			_load_level(checkpoint_pos_2, Vector2(0, 0))
+		1: # LEVEL 2 
+			_load_level(checkpoint_pos_2, Vector2(1731, -7))
 		2: # LEVEL 3
 			_load_level(checkpoint_pos_3, Vector2(4275, -775))
 		3: # LEVEL 4

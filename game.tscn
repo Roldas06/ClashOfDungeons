@@ -3240,7 +3240,7 @@ scale = Vector2(8.4, 4.1200013)
 target = NodePath("../SpotToTeleport")
 
 [node name="SpotToTeleport" type="Marker2D" parent="." unique_id=405828732]
-position = Vector2(1733, -12)
+position = Vector2(1731, -7)
 
 [node name="TreesRocks" type="Node" parent="." unique_id=1892327516]
 
