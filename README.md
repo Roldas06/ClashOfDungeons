@@ -34,6 +34,10 @@ Through collaboration, creativity, and continuous iteration, we bring Clash of D
   <img src="/Scripts/Help screen 2.0.png" width="900">
 </p>
 
+## Technologies used
+- Godot 4.6.1 game engine
+- GDScript
+
 ##  Installation
 1. Download archive from "Releases" section.
 2. Unpack the archive.
