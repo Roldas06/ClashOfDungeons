@@ -2939,7 +2939,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(-644, -17)
+position = Vector2(-642, -18)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -3531,6 +3531,9 @@ level_number = 3
 position = Vector2(430, -4649)
 level_number = null
 
+[node name="Checkpoint4" parent="CheckpointManager" unique_id=1281095773 instance=ExtResource("36_aa0lp")]
+position = Vector2(1588, -941)
+
 [node name="Deathzone" type="Area2D" parent="." unique_id=1106408805]
 position = Vector2(1548, 193)
 scale = Vector2(1.2131985, 1.2131985)
@@ -3588,7 +3591,7 @@ shape = SubResource("RectangleShape2D_kq12w")
 
 [node name="Area2D2" parent="." unique_id=1492656518 instance=ExtResource("18_tb2lt")]
 position = Vector2(412, -5015)
-scale = Vector2(-33.38701, 472.31595)
+scale = Vector2(-34.63754, 677.8361)
 
 [node name="StatBoostUI" type="CanvasLayer" parent="." unique_id=18871927]
 layer = 20
