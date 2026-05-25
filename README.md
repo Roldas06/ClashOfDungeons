@@ -21,8 +21,7 @@
 </p>
 
 ## Instaliacija
-<p align="left">
 1. Parsisiųskite žaidimo archyva iš "Releases" sekcijos.
 2. Išarchivuokite aplanką.
 3. Paleiskite "ClashOfDungeons.exe" failą.
-</p>
+
