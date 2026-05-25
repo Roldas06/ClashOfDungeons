@@ -7,6 +7,7 @@ Clash of Dungeons is a dark 2D platformer set deep within gloomy underground lab
 <p align="center">
   <img src="backroundasZaidimui2.png" width="900">
 </p>
+
 ## 🧑‍🔬 About the developers
 The developers of "Clash of Dungeons" are a dedicated team of passionate creators currently studying at Kaunas University of Technology. Our development process follows Agile principles, allowing us to iteratively improve and refine our game with each development cycle.
 
