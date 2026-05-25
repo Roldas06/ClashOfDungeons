@@ -4,7 +4,6 @@ var is_transitioning := false
 var overlay: ColorRect
 var text_label: Label
 var sub_label: Label
-var stat_boost_ui
 
 func _ready():
 	_build_overlay()
@@ -55,17 +54,11 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.collected_keys == 3:
 			is_transitioning = true
 			$AnimatedSprite2D.play("opening")
-			if Global.unlocked_levels < 4:
-				stat_boost_ui.show_ui()
-			else:
-				_start_transition(body)
+			_start_transition(body)
 			Global.unlocked_levels = 4
 			body.collected_keys = 0
 			SaveGame.save_game()
 
-func _on_boost_selected(boost_data: Dictionary) -> void:
-	Global.apply_boost(boost_data)
-	_start_transition(get_tree().current_scene.get_node("Player"))
 
 func _start_transition(body):
 	var canvas = get_node("TransitionCanvas")
