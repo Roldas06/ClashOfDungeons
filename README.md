@@ -38,4 +38,3 @@ Through collaboration, creativity, and continuous iteration, we bring Clash of D
 1. Download archive from "Releases" section.
 2. Unpack the archive.
 3. Run "ClashOfDungeons.exe" file.
-
