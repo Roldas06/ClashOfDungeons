@@ -2857,7 +2857,7 @@ script = ExtResource("1_t88pq")
 
 [node name="Player" parent="." unique_id=229956183 groups=["player"] instance=ExtResource("1_80nbo")]
 z_index = 1
-position = Vector2(-592, -26)
+position = Vector2(-648, -49)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1508764845 groups=["camera", "player"]]
 position = Vector2(3, 4)
@@ -3353,7 +3353,7 @@ autoplay = &"Moving"
 [node name="Enemies" type="Node" parent="." unique_id=1031763891]
 
 [node name="BatEnemy" parent="Enemies" unique_id=1393629977 instance=ExtResource("29_bnpwn")]
-position = Vector2(1808, -25)
+position = Vector2(1770, -233)
 
 [node name="sfx_damage" type="AudioStreamPlayer2D" parent="Enemies/BatEnemy" unique_id=1186431588]
 position = Vector2(-6, 3)
@@ -3394,13 +3394,13 @@ position = Vector2(4587, -772)
 [node name="Collectables" type="Node" parent="." unique_id=369813592]
 
 [node name="Key3" parent="Collectables" unique_id=658355017 instance=ExtResource("28_5b14r")]
-position = Vector2(2113, -479)
+position = Vector2(2132, -495)
 
 [node name="Key" parent="Collectables" unique_id=1138638276 instance=ExtResource("28_5b14r")]
-position = Vector2(1407, -321)
+position = Vector2(1705, -26)
 
 [node name="Key2" parent="Collectables" unique_id=854165549 instance=ExtResource("28_5b14r")]
-position = Vector2(1669, -12)
+position = Vector2(1414, -330)
 
 [node name="Key4" parent="Collectables" unique_id=1482208154 instance=ExtResource("28_5b14r")]
 position = Vector2(518, -5041)
@@ -3429,9 +3429,10 @@ position = Vector2(1735, 28)
 
 [node name="Checkpoint2" parent="CheckpointManager" unique_id=510107111 instance=ExtResource("36_aa0lp")]
 position = Vector2(4273, -731)
+level_number = 3
 
 [node name="Checkpoint3" parent="CheckpointManager" unique_id=2088186732 instance=ExtResource("36_aa0lp")]
-position = Vector2(1542, -921)
+position = Vector2(430, -4649)
 
 [node name="Deathzone" type="Area2D" parent="." unique_id=1106408805]
 position = Vector2(1548, 193)
@@ -3489,7 +3490,7 @@ position = Vector2(416, -32)
 shape = SubResource("RectangleShape2D_kq12w")
 
 [node name="Area2D2" parent="." unique_id=1492656518 instance=ExtResource("18_tb2lt")]
-position = Vector2(476, -4742)
+position = Vector2(397, -4845)
 scale = Vector2(-33.38701, 472.31595)
 
 [node name="StatBoostUI" type="CanvasLayer" parent="." unique_id=18871927]
@@ -3503,6 +3504,10 @@ scale = Vector2(4.1, 4.1)
 [node name="DungeonDoor3" parent="." unique_id=1903173251 instance=ExtResource("60_mc3al")]
 position = Vector2(1382, -5418)
 scale = Vector2(0.355, 0.355)
+
+[node name="Checkpoint" parent="." unique_id=770298000 instance=ExtResource("36_aa0lp")]
+position = Vector2(786, -4599)
+level_number = 5
 
 [connection signal="body_entered" from="Deathzone" to="Deathzone" method="_on_body_entered"]
 [connection signal="body_entered" from="TutorialMove" to="TutorialMove" method="_on_body_entered"]

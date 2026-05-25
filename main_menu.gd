@@ -6,11 +6,14 @@ extends Control
 
 var level2_unlocked = false
 var level3_unlocked = false
+var level4_unlocked = false
+var level5_unlocked = false
 var checkpoint_pos_2 = null
 var checkpoint_pos_3 = null
+var checkpoint_pos_4 = null
+var checkpoint_pos_5 = null
 
 func _ready() -> void:
-	# Istrina sena issaugojima jei senos strukturos
 	if FileAccess.file_exists("user://save.dat"):
 		var save = FileAccess.open("user://save.dat", FileAccess.READ)
 		var data = save.get_var()
@@ -27,8 +30,12 @@ func _ready() -> void:
 		save.close()
 		level2_unlocked = data.get("level2_unlocked", false)
 		level3_unlocked = data.get("level3_unlocked", false)
+		level4_unlocked = data.get("level4_unlocked", false)
+		level5_unlocked = data.get("level5_unlocked", false)
 		checkpoint_pos_2 = data.get("checkpoint_pos_2", null)
 		checkpoint_pos_3 = data.get("checkpoint_pos_3", null)
+		checkpoint_pos_4 = data.get("checkpoint_pos_4", null)
+		checkpoint_pos_5 = data.get("checkpoint_pos_5", null)
 	
 	levels_popup.clear()
 	levels_popup.add_item("Level 1")
@@ -44,6 +51,18 @@ func _ready() -> void:
 	else:
 		levels_popup.add_item("Level 3 (Locked)")
 		levels_popup.set_item_disabled(2, true)
+	
+	if level4_unlocked:
+		levels_popup.add_item("Level 4")
+	else:
+		levels_popup.add_item("Level 4 (Locked)")
+		levels_popup.set_item_disabled(3, true)
+	
+	if level5_unlocked:
+		levels_popup.add_item("Level 5")
+	else:
+		levels_popup.add_item("Level 5 (Locked)")
+		levels_popup.set_item_disabled(4, true)
 
 func _on_levels_button_pressed() -> void:
 	var rect = levels_button.get_global_rect()
@@ -62,6 +81,14 @@ func _on_levels_popup_index_pressed(index: int) -> void:
 		Global.start_at_checkpoint = true
 		Global.checkpoint_pos = checkpoint_pos_3
 		get_tree().change_scene_to_file("res://game.tscn")
+	elif index == 3 and level4_unlocked:
+		Global.start_at_checkpoint = true
+		Global.checkpoint_pos = checkpoint_pos_4
+		get_tree().change_scene_to_file("res://game.tscn")
+	elif index == 4 and level5_unlocked:
+		Global.start_at_checkpoint = true
+		Global.checkpoint_pos = checkpoint_pos_5
+		get_tree().change_scene_to_file("res://game.tscn")
 
 func _on_start_pressed() -> void:
 	Global.start_at_checkpoint = false
@@ -76,7 +103,6 @@ func _on_button_quit_pressed() -> void:
 	if FileAccess.file_exists("user://save.dat"):
 		DirAccess.remove_absolute("user://save.dat")
 	get_tree().quit()
-
 
 func _on_back_options_pressed() -> void:
 	_ready()
