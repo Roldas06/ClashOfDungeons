@@ -8,7 +8,7 @@ Clash of Dungeons is a dark 2D platformer set deep within gloomy underground lab
   <img src="backroundasZaidimui2.png" width="900">
 </p>
 
-## 🧑‍🔬 About the developers
+##  About the developers
 The developers of "Clash of Dungeons" are a dedicated team of passionate creators currently studying at Kaunas University of Technology. We go by "The Clashers" and our development process follows Agile principles, allowing us to iteratively improve and refine our game with each development cycle.
 
 We are united by the same goal of making Clash of Dungeons a challenging but enjoyable experience for everybody. Each team member played a significant role in shaping the final product. Together we implemented a wide range of features, with each developer focusing primarily on:
@@ -20,21 +20,21 @@ We are united by the same goal of making Clash of Dungeons a challenging but enj
 - **Enrikas Lekešys:** Level design  
 
 Through collaboration, creativity, and continuous iteration, we bring Clash of Dungeons for everyone to enjoy.
-## ✨ Features
+##  Features
 
-- ⚔ Challenging enemies
-- 🗝 Hidden collectible keys
-- 🕳 Deadly dungeon traps
-- 🏃 Precision parkour
-- 🌑 Dark atmospheric visuals
-- 🚪 Multiple dungeon levels
+-  Challenging enemies
+-  Hidden collectible keys
+-  Deadly dungeon traps
+-  Precision parkour
+-  Dark atmospheric visuals
+-  Multiple dungeon levels
 
-## 🕹 Controls
+## Controls
 <p align="center">
   <img src="/Scripts/Help screen 2.0.png" width="900">
 </p>
 
-## 🚀 Installation
+##  Installation
 1. Download archive from "Releases" section.
 2. Unpack the archive.
 3. Run "ClashOfDungeons.exe" file.
