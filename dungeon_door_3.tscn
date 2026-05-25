@@ -54,3 +54,5 @@ animation = &"opening"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=886872842]
 position = Vector2(-0.5, -40.5)
 shape = SubResource("RectangleShape2D_3a4tf")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
