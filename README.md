@@ -13,11 +13,11 @@ The developers of "Clash of Dungeons" are a dedicated team of passionate creator
 
 We are united by the same goal of making Clash of Dungeons a challenging but enjoyable experience for everybody. Each team member played a significant role in shaping the final product. Together we implemented a wide range of features, with each developer focusing primarily on:
 
-- **Žygimantas Mikaila:** User interface and level selection system  
-- **Martynas Pocius:** Health system and enemy mechanics  
-- **Renaldas Popovas:** Main boss design and player movement  
-- **Haroldas Montvila:** Combat system and project management  
-- **Enrikas Lekešys:** Level design  
+- **Žygimantas Mikaila: https://github.com/Zygiz** User interface and level selection system  
+- **Martynas Pocius: https://github.com/Markinum** Health system and enemy mechanics  
+- **Renaldas Popovas: https://github.com/cyenara** Main boss design and player movement  
+- **Haroldas Montvila https://github.com/Roldas06:** Combat system and project management  
+- **Enrikas Lekešys: https://github.com/Enrikas258 ** Level design  
 
 Through collaboration, creativity, and continuous iteration, we bring Clash of Dungeons for everyone to enjoy.
 ##  Features
