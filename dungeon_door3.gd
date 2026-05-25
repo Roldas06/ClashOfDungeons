@@ -7,8 +7,6 @@ var sub_label: Label
 
 func _ready():
 	_build_overlay()
-	stat_boost_ui = get_tree().current_scene.get_node("StatBoostUI")
-	stat_boost_ui.boost_selected.connect(_on_boost_selected)
 
 func _build_overlay():
 	var canvas = CanvasLayer.new()
