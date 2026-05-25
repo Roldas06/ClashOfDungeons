@@ -53,10 +53,10 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.collected_keys == 3:
 			is_transitioning = true
 			$AnimatedSprite2D.play("opening")
-			_start_transition(body)
 			Global.unlocked_levels = 3
 			body.collected_keys = 0
 			SaveGame.save_game()
+			_start_transition(body)
 
 
 func _start_transition(body):
